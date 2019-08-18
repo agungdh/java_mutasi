@@ -230,7 +230,7 @@ public class Laporan extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        new MenuUtama().setVisible(true);
+        new MenuUtamaBak().setVisible(true);
         
         this.dispose();
     }//GEN-LAST:event_formWindowClosing

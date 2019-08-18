@@ -220,7 +220,7 @@ public class Login extends javax.swing.JFrame {
             Base.close();
             
             if (muser != null) {
-                new MenuUtama().setVisible(true);
+                new MenuUtamaBak().setVisible(true);
                 
                 this.dispose();
             } else {

@@ -540,13 +540,13 @@ public class GajiBerkala extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonRefreshActionPerformed
 
     private void ButtonHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonHomeActionPerformed
-        new MenuUtama().setVisible(true);
+        new MenuUtamaBak().setVisible(true);
         
         this.dispose();
     }//GEN-LAST:event_ButtonHomeActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        new MenuUtama().setVisible(true);
+        new MenuUtamaBak().setVisible(true);
         
         this.dispose();
     }//GEN-LAST:event_formWindowClosing
