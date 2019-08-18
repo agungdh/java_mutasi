@@ -20,7 +20,6 @@ import org.javalite.activejdbc.LazyList;
 import org.joda.time.DateTime;
 import org.joda.time.Months;
 import test.test.Models.AdminModel;
-import test.test.Models.PegawaiModel;
 
 /**
  *

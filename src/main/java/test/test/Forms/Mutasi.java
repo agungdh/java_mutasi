@@ -36,8 +36,7 @@ import org.javalite.activejdbc.Base;
 import org.javalite.activejdbc.DBException;
 import org.javalite.activejdbc.LazyList;
 import test.test.Classes.MendekatiTMT;
-import test.test.Models.PangkatGolModel;
-import test.test.Models.PegawaiModel;
+
 import test.test.Models.TempatTugasModel;
 import test.test.Models.KaryawanModel;
 import test.test.Models.MutasiModel;
@@ -193,9 +192,9 @@ public class Mutasi extends javax.swing.JFrame {
     
     private void hapusData() {
         Base.open();
-        KaryawanModel karyawan = KaryawanModel.findById(ID);
+        MutasiModel mutasi = MutasiModel.findById(ID);
         try {
-            karyawan.delete();
+            mutasi.delete();
         } catch (DBException e) {
             JOptionPane.showMessageDialog(null, e.getLocalizedMessage());
         }
@@ -224,7 +223,7 @@ public class Mutasi extends javax.swing.JFrame {
         try {
             MutasiModel mutasi = new MutasiModel();
             mutasi.set("no_surat", No.getText());
-            mutasi.set("id_pegawai", selectedComboKaryawanIndex);
+            mutasi.set("id_karyawan", selectedComboKaryawanIndex);
             mutasi.set("id_tempat_tugas_lama", selectedComboLamaIndex);
             mutasi.set("id_tempat_tugas_baru", selectedComboBaruIndex);
             mutasi.set("tanggal", dateFormat.format(Tanggal.getDate()));
@@ -241,7 +240,7 @@ public class Mutasi extends javax.swing.JFrame {
         try {
             MutasiModel mutasi = MutasiModel.findById(ID);
             mutasi.set("no_surat", No.getText());
-            mutasi.set("id_pegawai", selectedComboKaryawanIndex);
+            mutasi.set("id_karyawan", selectedComboKaryawanIndex);
             mutasi.set("id_tempat_tugas_lama", selectedComboLamaIndex);
             mutasi.set("id_tempat_tugas_baru", selectedComboBaruIndex);
             mutasi.set("tanggal", dateFormat.format(Tanggal.getDate()));
@@ -402,14 +401,6 @@ public class Mutasi extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(ScrollPane)
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(185, 185, 185)
-                .addComponent(ButtonTambahUbah)
-                .addGap(29, 29, 29)
-                .addComponent(ButtonRefresh)
-                .addGap(28, 28, 28)
-                .addComponent(ButtonResetHapus)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(123, 123, 123)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -439,6 +430,14 @@ public class Mutasi extends javax.swing.JFrame {
                                     .addComponent(Tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(No, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(110, 110, 110))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(ButtonTambahUbah)
+                .addGap(29, 29, 29)
+                .addComponent(ButtonRefresh)
+                .addGap(28, 28, 28)
+                .addComponent(ButtonResetHapus)
+                .addGap(203, 203, 203))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -463,12 +462,12 @@ public class Mutasi extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(LabelCari4)
                     .addComponent(Tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(152, 152, 152)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ButtonRefresh)
                     .addComponent(ButtonTambahUbah)
                     .addComponent(ButtonResetHapus))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TextCari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LabelCari))
@@ -493,92 +492,54 @@ public class Mutasi extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void TablePegawaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablePegawaiMouseClicked
-//        int i =TablePegawai.getSelectedRow();
-//        if(i>=0){
-//            ID = model.getValueAt(i, 0).toString();
-//
-//            Base.open();
-//            KaryawanModel karyawan = KaryawanModel.findById(ID);
-//            Base.close();
-//
-//            No.setText(karyawan.getString("nama"));
-//            NIK.setText(karyawan.getString("nik"));
-//            Tempat.setText(karyawan.getString("tempat_lahir"));
-//            Agama.setText(karyawan.getString("agama"));
-//            Pendidikan.setText(karyawan.getString("pendidikan"));
-//            Pekerjaan.setText(karyawan.getString("pekerjaan"));
-//            Kawin.setText(karyawan.getString("status_kawin"));
-//            
-//            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-//            
-//            try {
-//                Tanggal.setDate(format.parse(karyawan.getString("tanggal_lahir")));
-//            } catch (Exception e) {
-//                JOptionPane.showMessageDialog(null, e.getMessage());
-//            }
-//            
-//            if (karyawan.getString("kelamin").equals("Laki-Laki")) {
-//                laki.setSelected(true);
-//                perempuan.setSelected(false); 
-//            } else {
-//                perempuan.setSelected(true); 
-//                laki.setSelected(false);
-//            }
-//            
-//            setState("edit");
-//        }
+        int i =TablePegawai.getSelectedRow();
+        if(i>=0){
+            ID = model.getValueAt(i, 0).toString();
+
+            Base.open();
+            MutasiModel mutasi = MutasiModel.findById(ID);
+            Base.close();
+
+            No.setText(mutasi.getString("no_surat"));
+            
+            Karyawan.setSelectedIndex(comboKaryawanID.indexOf(Integer.parseInt(mutasi.getString("id_karyawan"))));
+            Lama.setSelectedIndex(comboLamaID.indexOf(Integer.parseInt(mutasi.getString("id_tempat_tugas_lama"))));
+            Baru.setSelectedIndex(comboBaruID.indexOf(Integer.parseInt(mutasi.getString("id_tempat_tugas_baru"))));
+            
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            
+            try {
+                Tanggal.setDate(format.parse(mutasi.getString("tanggal")));
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
+            
+            setState("edit");
+        }
     }//GEN-LAST:event_TablePegawaiMouseClicked
 
     private void ButtonTambahUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonTambahUbahActionPerformed
-//        if (state.equals("index")) {
-//            if (No.getText().trim().equals("")) {
-//                JOptionPane.showMessageDialog(null, "Form Nama Masih Kosong !!!");
-//            } else if (NIK.getText().trim().equals("")) {
-//                JOptionPane.showMessageDialog(null, "Form NIK Masih Kosong !!!");
-//            } else if (Tempat.getText().trim().equals("")) {
-//                JOptionPane.showMessageDialog(null, "Form Tempat Lahir Masih Kosong !!!");
-//            } else if (Agama.getText().trim().equals("")) {
-//                JOptionPane.showMessageDialog(null, "Form Agama Masih Kosong !!!");
-//            } else if (Pendidikan.getText().trim().equals("")) {
-//                JOptionPane.showMessageDialog(null, "Form Pendidikan Masih Kosong !!!");
-//            } else if (Pekerjaan.getText().trim().equals("")) {
-//                JOptionPane.showMessageDialog(null, "Form Pekerjaan Masih Kosong !!!");
-//            } else if (Kawin.getText().trim().equals("")) {
-//                JOptionPane.showMessageDialog(null, "Form Status Kawin Masih Kosong !!!");
-//            } else if (!laki.isSelected() && !perempuan.isSelected()) {
-//                JOptionPane.showMessageDialog(null, "Form Jenis Kelamin Belum Dipilih !!!");
-//            } else if (Tanggal.getDate() == null) {
-//                JOptionPane.showMessageDialog(null, "Form Tanggal Lahir Masih Kosong !!!");
-//            } else {
-//                tambahData();
-//                resetForm();
-//                loadTable();
-//            }
-//        } else {
-//            if (No.getText().trim().equals("")) {
-//                JOptionPane.showMessageDialog(null, "Form Nama Masih Kosong !!!");
-//            } else if (NIK.getText().trim().equals("")) {
-//                JOptionPane.showMessageDialog(null, "Form NIK Masih Kosong !!!");
-//            } else if (Tempat.getText().trim().equals("")) {
-//                JOptionPane.showMessageDialog(null, "Form Tempat Lahir Masih Kosong !!!");
-//            } else if (Agama.getText().trim().equals("")) {
-//                JOptionPane.showMessageDialog(null, "Form Agama Masih Kosong !!!");
-//            } else if (Pendidikan.getText().trim().equals("")) {
-//                JOptionPane.showMessageDialog(null, "Form Pendidikan Masih Kosong !!!");
-//            } else if (Pekerjaan.getText().trim().equals("")) {
-//                JOptionPane.showMessageDialog(null, "Form Pekerjaan Masih Kosong !!!");
-//            } else if (Kawin.getText().trim().equals("")) {
-//                JOptionPane.showMessageDialog(null, "Form Status Kawin Masih Kosong !!!");
-//            } else if (!laki.isSelected() && !perempuan.isSelected()) {
-//                JOptionPane.showMessageDialog(null, "Form Jenis Kelamin Belum Dipilih !!!");
-//            } else if (Tanggal.getDate() == null) {
-//                JOptionPane.showMessageDialog(null, "Form Tanggal Lahir Masih Kosong !!!");
-//            } else {
-//                ubahData();
-//                resetForm();
-//                loadTable();
-//            }
-//        }
+        if (state.equals("index")) {
+            if (No.getText().trim().equals("")) {
+                JOptionPane.showMessageDialog(null, "Form No Surat Masih Kosong !!!");
+            } else if (Tanggal.getDate() == null) {
+                JOptionPane.showMessageDialog(null, "Form Tanggal Masih Kosong !!!");
+            } else {
+                tambahData();
+                resetForm();
+                loadTable();
+            }
+        } else {
+             if (No.getText().trim().equals("")) {
+                JOptionPane.showMessageDialog(null, "Form No Surat Masih Kosong !!!");
+            } else if (Tanggal.getDate() == null) {
+                JOptionPane.showMessageDialog(null, "Form Tanggal Masih Kosong !!!");
+            } else {
+                ubahData();
+                resetForm();
+                loadTable();
+            }
+        }
     }//GEN-LAST:event_ButtonTambahUbahActionPerformed
 
     private void ButtonResetHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonResetHapusActionPerformed
@@ -603,7 +564,10 @@ public class Mutasi extends javax.swing.JFrame {
     }//GEN-LAST:event_KaryawanItemStateChanged
 
     private void KaryawanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KaryawanActionPerformed
-       
+        comboKaryawanIndex = Karyawan.getSelectedIndex();
+        if (comboKaryawanIndex >= 0) {
+            selectedComboKaryawanIndex = comboKaryawanID.get(comboKaryawanIndex);
+        }
     }//GEN-LAST:event_KaryawanActionPerformed
 
     private void LamaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_LamaItemStateChanged
@@ -611,7 +575,10 @@ public class Mutasi extends javax.swing.JFrame {
     }//GEN-LAST:event_LamaItemStateChanged
 
     private void LamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LamaActionPerformed
-        // TODO add your handling code here:
+        comboLamaIndex = Lama.getSelectedIndex();
+        if (comboLamaIndex >= 0) {
+            selectedComboLamaIndex = comboLamaID.get(comboLamaIndex);
+        }
     }//GEN-LAST:event_LamaActionPerformed
 
     private void BaruItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_BaruItemStateChanged
@@ -619,7 +586,10 @@ public class Mutasi extends javax.swing.JFrame {
     }//GEN-LAST:event_BaruItemStateChanged
 
     private void BaruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BaruActionPerformed
-        // TODO add your handling code here:
+        comboBaruIndex = Baru.getSelectedIndex();
+        if (comboBaruIndex >= 0) {
+            selectedComboBaruIndex = comboBaruID.get(comboBaruIndex);
+        }
     }//GEN-LAST:event_BaruActionPerformed
 
     /**

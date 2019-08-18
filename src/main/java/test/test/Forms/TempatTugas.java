@@ -36,8 +36,7 @@ import org.javalite.activejdbc.Base;
 import org.javalite.activejdbc.DBException;
 import org.javalite.activejdbc.LazyList;
 import test.test.Classes.MendekatiTMT;
-import test.test.Models.PangkatGolModel;
-import test.test.Models.PegawaiModel;
+
 import test.test.Models.TempatTugasModel;
 import test.test.Reports.Config;
 
