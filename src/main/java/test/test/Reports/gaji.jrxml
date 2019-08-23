@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="gaji" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3e531f50-285a-424b-91e1-b9a952a9a76d">
-	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.zoom" value="1.7715610000000037"/>
+	<property name="ireport.x" value="98"/>
+	<property name="ireport.y" value="223"/>
+	<parameter name="nik" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
-		<![CDATA[SELECT g.*, k.nama, k.nik, j.jabatan
+		<![CDATA[SELECT g.*, k.nama, k.nik, j.jabatan, g.gaji + g.t_jabatan + g.t_keluarga + g.t_komunikasi + g.u_kehadiran + g.purna_tugas total
 FROM gaji g, karyawan k, jabatan j
 WHERE g.id_karyawan = k.id
-AND k.id_jabatan = j.id]]>
+AND k.id_jabatan = j.id
+AND k.nik = $P{nik}]]>
 	</queryString>
 	<field name="id" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -42,7 +46,136 @@ AND k.id_jabatan = j.id]]>
 	<field name="jabatan" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="total" class="java.lang.Long"/>
 	<title>
-		<band height="294" splitType="Stretch"/>
+		<band height="430" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="45" width="43" height="20" uuid="872f9312-3de7-4a6a-9af2-f17dc11208d1"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NAMA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="65" width="43" height="20" uuid="df4c6100-0690-4530-be03-021b4d3b4e94"/>
+				<text><![CDATA[Jabatan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="43" y="65" width="5" height="20" uuid="3dc91f32-e31a-44bd-b924-8e0372e75df7"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="43" y="45" width="5" height="20" uuid="096fc83f-e617-42f0-895f-d258e892cbb8"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="48" y="45" width="143" height="20" uuid="e1c46448-1d4c-4ef1-9826-f6b488962685"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="48" y="65" width="143" height="20" uuid="ec16118a-93c0-4585-9fe2-b552727bc971"/>
+				<textFieldExpression><![CDATA[$F{jabatan}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="105" width="82" height="20" uuid="3055ece6-c4dd-41c6-9bd3-8759e8704515"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[A. PENERIMAAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="125" width="146" height="20" uuid="d2c61433-984b-46c6-bef3-4ba3bc5442b5"/>
+				<text><![CDATA[1. GAJI POKOK]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="145" width="146" height="20" uuid="22809893-e613-4f48-b883-eb464a097ce7"/>
+				<text><![CDATA[2. TUNJANGAN JABATAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="165" width="146" height="20" uuid="0e9c4cb5-ee61-47f5-89cb-899e4286c39b"/>
+				<text><![CDATA[3. TUNJANGAN KELUARGA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="185" width="146" height="20" uuid="a6282de2-f132-4171-9219-ff13c4f43a30"/>
+				<text><![CDATA[4. TUNJANGAN KOMUNIKASI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="205" width="146" height="20" uuid="be2340c3-5d14-4586-aca7-1ae04e6abb28"/>
+				<text><![CDATA[5. UANG KEHADIRAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="225" width="146" height="20" uuid="1b16bdda-c803-44d4-92b9-4a538df6f304"/>
+				<text><![CDATA[6. PURNA TUGAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="151" y="125" width="5" height="20" uuid="064b44c3-9590-49c6-a22a-1790f828760c"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="151" y="145" width="5" height="20" uuid="810dfd61-6181-4736-894b-f54d66e82767"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="151" y="165" width="5" height="20" uuid="de4dc116-0696-46f2-aca7-903fedd7c698"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="151" y="185" width="5" height="20" uuid="c0f28c2e-b33f-470f-b2cc-19dd6a0465c9"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="151" y="205" width="5" height="20" uuid="4feb8e58-a27c-4a90-bede-a7fa0acf93a1"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="151" y="225" width="5" height="20" uuid="59560eb0-a890-4801-9780-30624ec3520d"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField pattern="#,##0">
+				<reportElement x="156" y="125" width="143" height="20" uuid="a111f88b-247e-446c-aaa6-d676f1778b46"/>
+				<textFieldExpression><![CDATA[$F{gaji}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="156" y="145" width="143" height="20" uuid="529babc1-7a91-4644-a5ba-70a0d5752b5a"/>
+				<textFieldExpression><![CDATA[$F{t_jabatan}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="156" y="165" width="143" height="20" uuid="d27cda76-a873-48cb-99f4-4988725bf11a"/>
+				<textFieldExpression><![CDATA[$F{t_keluarga}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="156" y="185" width="143" height="20" uuid="1e102c9c-64b4-4151-bd94-0e740506138a"/>
+				<textFieldExpression><![CDATA[$F{t_komunikasi}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="156" y="205" width="143" height="20" uuid="ebd67055-7774-4d38-8cc7-8bdc17c92dbe"/>
+				<textFieldExpression><![CDATA[$F{u_kehadiran}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="156" y="225" width="143" height="20" uuid="c9dfc856-ce45-4960-8952-0202dafbbdd2"/>
+				<textFieldExpression><![CDATA[$F{purna_tugas}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="322" y="245" width="118" height="20" uuid="24dd8f80-07f1-4a38-b370-62d1bb8a2795"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[JUMLAH PENDAPATAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="440" y="245" width="5" height="20" uuid="6a71d145-be00-4e3b-9aed-7cd8dbf26ba9"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField pattern="#,##0">
+				<reportElement x="445" y="245" width="110" height="20" uuid="e667fe47-92f3-4df0-90ea-200e4abff73f"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+		</band>
 	</title>
 </jasperReport>

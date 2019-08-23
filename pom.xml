@@ -83,7 +83,7 @@
                     </execution>
                 </executions>
             </plugin>
-<!--            <plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <executions>
@@ -101,8 +101,8 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>-->
-<!--            <plugin>
+            </plugin>
+            <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-jar-plugin</artifactId>
             <version>3.1.2</version>
@@ -111,11 +111,11 @@
                 <manifest>
                   <addClasspath>true</addClasspath>
                   <classpathPrefix>lib/</classpathPrefix>
-                  <mainClass>test.test.Classes.Main</mainClass>
+                  <mainClass>test.test.Forms.Login</mainClass>
                 </manifest>
               </archive>
             </configuration>
-          </plugin>-->
+          </plugin>
           <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
@@ -129,7 +129,7 @@
                             <archive>
                             <manifest>
                                 <mainClass>
-                                    test.test.Classes.Main
+                                    test.test.Forms.Login
                                 </mainClass>
                             </manifest>
                             </archive>
