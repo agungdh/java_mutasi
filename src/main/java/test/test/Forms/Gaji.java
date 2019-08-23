@@ -35,25 +35,28 @@ import net.sf.jasperreports.view.JasperViewer;
 import org.javalite.activejdbc.Base;
 import org.javalite.activejdbc.DBException;
 import org.javalite.activejdbc.LazyList;
+import test.test.Models.JabatanModel;
+import test.test.Models.KaryawanModel;
 
-import test.test.Models.TempatTugasModel;
+import test.test.Models.GajiModel;
 import test.test.Reports.Config;
 
 /**
  *
  * @author user
  */
-public class TempatTugas extends javax.swing.JFrame {
-    private List<Integer> comboPangkatGolID = new ArrayList<Integer>();
-    private int comboPangkatGolIndex;
-    private int selectedComboPangkatGolIndex;
+public class Gaji extends javax.swing.JFrame {
+    private List<Integer> comboKaryawanID = new ArrayList<Integer>();
+    private int comboKaryawanIndex;
+    private int selectedComboKaryawanIndex;
+    
     private DefaultTableModel model = new DefaultTableModel();
     private String ID;
     private String state;
     /**
      * Creates new form PangkatGol
      */
-    public TempatTugas() {
+    public Gaji() {
         initComponents();
                 
         loadTable();
@@ -73,9 +76,24 @@ public class TempatTugas extends javax.swing.JFrame {
             }
         });
         
+        loadComboBox();
+        
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
     }
     
+    public void loadComboBox() {
+        Karyawan.removeAllItems();
+        Base.open();
+        LazyList<KaryawanModel> karyawans = KaryawanModel.findAll();
+        
+        for(KaryawanModel karyawan : karyawans) {
+            comboKaryawanID.add(Integer.parseInt(karyawan.getString("id")));
+            Karyawan.addItem(karyawan.getString("nama") + " " + karyawan.getString("nik"));
+        }
+
+        Base.close();
+    }
+     
     public void cari() {
         if (TextCari.getText().equals("")) {
             loadTable();
@@ -84,11 +102,11 @@ public class TempatTugas extends javax.swing.JFrame {
         }
     }
     
-    private void loadTableHelper(LazyList<TempatTugasModel> tempatTugass) {
+    private void loadTableHelper(LazyList<GajiModel> gajis) {
         model = new DefaultTableModel();
                 
         model.addColumn("#ID");
-        model.addColumn("Tempat Tugas");
+        model.addColumn("Karyawan");
         model.addColumn("Gaji");
         model.addColumn("T. Jabatan");
         model.addColumn("T. Keluarga");
@@ -99,7 +117,7 @@ public class TempatTugas extends javax.swing.JFrame {
         Base.open();
         try {
 
-            for(TempatTugasModel tempatTugas : tempatTugass) {
+            for(GajiModel gaji : gajis) {
                 DecimalFormat kursIndonesia = (DecimalFormat) DecimalFormat.getCurrencyInstance();
                 DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
 
@@ -108,16 +126,16 @@ public class TempatTugas extends javax.swing.JFrame {
                 formatRp.setGroupingSeparator('.');
 
                 kursIndonesia.setDecimalFormatSymbols(formatRp);
-                
+                KaryawanModel karyawan = gaji.parent(KaryawanModel.class);
                 model.addRow(new Object[]{
-                    tempatTugas.getId(),
-                    tempatTugas.getString("nama_t_tugas"),
-                    kursIndonesia.format(tempatTugas.getInteger("gaji")),
-                    kursIndonesia.format(tempatTugas.getInteger("t_jabatan")),
-                    kursIndonesia.format(tempatTugas.getInteger("t_keluarga")),
-                    kursIndonesia.format(tempatTugas.getInteger("t_komunikasi")),
-                    kursIndonesia.format(tempatTugas.getInteger("u_kehadiran")),
-                    kursIndonesia.format(tempatTugas.getInteger("purna_tugas"))
+                    gaji.getId(),
+                    karyawan.getString("nik") + " " + karyawan.getString("nama"),
+                    kursIndonesia.format(gaji.getInteger("gaji")),
+                    kursIndonesia.format(gaji.getInteger("t_jabatan")),
+                    kursIndonesia.format(gaji.getInteger("t_keluarga")),
+                    kursIndonesia.format(gaji.getInteger("t_komunikasi")),
+                    kursIndonesia.format(gaji.getInteger("u_kehadiran")),
+                    kursIndonesia.format(gaji.getInteger("purna_tugas"))
                 });
             }
         } catch (Exception e) {
@@ -136,26 +154,26 @@ public class TempatTugas extends javax.swing.JFrame {
     
     private void loadTable() {
         Base.open();
-        LazyList<TempatTugasModel> tempatTugass = TempatTugasModel.findAll();
+        LazyList<GajiModel> gajis = GajiModel.findAll();
         Base.close();
         
-        loadTableHelper(tempatTugass);
+        loadTableHelper(gajis);
     }
 
     private void loadTable(String cari) {
         Base.open();
-        LazyList<TempatTugasModel> tempatTugass = TempatTugasModel.where("nama_t_tugas like ?", '%' + cari + '%');
+        LazyList<GajiModel> gajis = GajiModel.findBySQL("SELECT g.* FROM gaji g, karyawan k WHERE g.id_karyawan = k.id AND (k.nama like ? OR k.nik like ?)", '%' + cari + '%', '%' + cari + '%');
         Base.close();
         
-        loadTableHelper(tempatTugass);
+        loadTableHelper(gajis);
     }
 
     
     private void hapusData() {
         Base.open();
-        TempatTugasModel tempatTugas = TempatTugasModel.findById(ID);
+        GajiModel gaji = GajiModel.findById(ID);
         try {
-            tempatTugas.delete();
+            gaji.delete();
         } catch (DBException e) {
             JOptionPane.showMessageDialog(null, e.getLocalizedMessage());
         }
@@ -181,15 +199,15 @@ public class TempatTugas extends javax.swing.JFrame {
     private void tambahData() {
         Base.open();
         try {
-            TempatTugasModel tempatTugas = new TempatTugasModel();
-            tempatTugas.set("nama_t_tugas", Nama.getText());
-            tempatTugas.set("gaji", Gaji.getValue());
-            tempatTugas.set("t_jabatan", Jabatan.getValue());
-            tempatTugas.set("t_keluarga", Keluarga.getValue());
-            tempatTugas.set("t_komunikasi", Komunikasi.getValue());
-            tempatTugas.set("u_kehadiran", Kehadiran.getValue());
-            tempatTugas.set("purna_tugas", Purna.getValue());
-            tempatTugas.save();
+            GajiModel gaji = new GajiModel();
+            gaji.set("id_karyawan", selectedComboKaryawanIndex);
+            gaji.set("gaji", Gaji.getValue());
+            gaji.set("t_jabatan", Jabatan.getValue());
+            gaji.set("t_keluarga", Keluarga.getValue());
+            gaji.set("t_komunikasi", Komunikasi.getValue());
+            gaji.set("u_kehadiran", Kehadiran.getValue());
+            gaji.set("purna_tugas", Purna.getValue());
+            gaji.save();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -199,15 +217,15 @@ public class TempatTugas extends javax.swing.JFrame {
     private void ubahData() {
         Base.open();
         try {
-            TempatTugasModel tempatTugas = TempatTugasModel.findById(ID);
-            tempatTugas.set("nama_t_tugas", Nama.getText());
-            tempatTugas.set("gaji", Gaji.getValue());
-            tempatTugas.set("t_jabatan", Jabatan.getValue());
-            tempatTugas.set("t_keluarga", Keluarga.getValue());
-            tempatTugas.set("t_komunikasi", Komunikasi.getValue());
-            tempatTugas.set("u_kehadiran", Kehadiran.getValue());
-            tempatTugas.set("purna_tugas", Purna.getValue());
-            tempatTugas.save();
+            GajiModel gaji = GajiModel.findById(ID);
+            gaji.set("id_karyawan", selectedComboKaryawanIndex);
+            gaji.set("gaji", Gaji.getValue());
+            gaji.set("t_jabatan", Jabatan.getValue());
+            gaji.set("t_keluarga", Keluarga.getValue());
+            gaji.set("t_komunikasi", Komunikasi.getValue());
+            gaji.set("u_kehadiran", Kehadiran.getValue());
+            gaji.set("purna_tugas", Purna.getValue());
+            gaji.save();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -215,7 +233,7 @@ public class TempatTugas extends javax.swing.JFrame {
     }
 
     private void resetForm() {
-        Nama.setText("");
+        Karyawan.setSelectedIndex(0);
         Gaji.setValue(0);
         Jabatan.setValue(0);
         Keluarga.setValue(0);
@@ -240,7 +258,6 @@ public class TempatTugas extends javax.swing.JFrame {
         ButtonResetHapus = new javax.swing.JButton();
         TextCari = new javax.swing.JTextField();
         LabelCari = new javax.swing.JLabel();
-        Nama = new javax.swing.JTextField();
         LabelCari1 = new javax.swing.JLabel();
         LabelCari2 = new javax.swing.JLabel();
         LabelCari3 = new javax.swing.JLabel();
@@ -254,6 +271,7 @@ public class TempatTugas extends javax.swing.JFrame {
         Komunikasi = new javax.swing.JSpinner();
         Kehadiran = new javax.swing.JSpinner();
         Purna = new javax.swing.JSpinner();
+        Karyawan = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tempat Tugas");
@@ -307,15 +325,9 @@ public class TempatTugas extends javax.swing.JFrame {
             }
         });
 
-        LabelCari.setText("Cari (Nama)");
+        LabelCari.setText("Cari (Karyawan)");
 
-        Nama.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NamaActionPerformed(evt);
-            }
-        });
-
-        LabelCari1.setText("Nama");
+        LabelCari1.setText("Karyawan");
 
         LabelCari2.setText("Gaji");
 
@@ -328,6 +340,18 @@ public class TempatTugas extends javax.swing.JFrame {
         LabelCari6.setText("Uang Kehadiran");
 
         LabelCari7.setText("Purna Tugas");
+
+        Karyawan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        Karyawan.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                KaryawanItemStateChanged(evt);
+            }
+        });
+        Karyawan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                KaryawanActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -364,8 +388,8 @@ public class TempatTugas extends javax.swing.JFrame {
                                 .addComponent(LabelCari2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(Nama, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(Gaji, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(Gaji, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
+                                .addComponent(Karyawan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(65, 65, 65)
                         .addComponent(ButtonTambahUbah)
@@ -381,7 +405,7 @@ public class TempatTugas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LabelCari1)
-                    .addComponent(Nama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Karyawan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LabelCari2)
@@ -441,16 +465,16 @@ public class TempatTugas extends javax.swing.JFrame {
             ID = model.getValueAt(i, 0).toString();
 
             Base.open();
-            TempatTugasModel tempatTugas = TempatTugasModel.findById(ID);
+            GajiModel gaji = GajiModel.findById(ID);
             Base.close();
-
-            Nama.setText(tempatTugas.getString("nama_t_tugas"));
-            Gaji.setValue(tempatTugas.getInteger("gaji"));
-            Jabatan.setValue(tempatTugas.getInteger("t_jabatan"));
-            Keluarga.setValue(tempatTugas.getInteger("t_keluarga"));
-            Komunikasi.setValue(tempatTugas.getInteger("t_komunikasi"));
-            Kehadiran.setValue(tempatTugas.getInteger("u_kehadiran"));
-            Purna.setValue(tempatTugas.getInteger("purna_tugas"));
+            
+            Karyawan.setSelectedIndex(comboKaryawanID.indexOf(Integer.parseInt(gaji.getString("id_karyawan"))));
+            Gaji.setValue(gaji.getInteger("gaji"));
+            Jabatan.setValue(gaji.getInteger("t_jabatan"));
+            Keluarga.setValue(gaji.getInteger("t_keluarga"));
+            Komunikasi.setValue(gaji.getInteger("t_komunikasi"));
+            Kehadiran.setValue(gaji.getInteger("u_kehadiran"));
+            Purna.setValue(gaji.getInteger("purna_tugas"));
             
             setState("edit");
         }
@@ -458,21 +482,13 @@ public class TempatTugas extends javax.swing.JFrame {
 
     private void ButtonTambahUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonTambahUbahActionPerformed
         if (state.equals("index")) {
-            if (Nama.getText().trim().equals("")) {
-                JOptionPane.showMessageDialog(null, "Form Nama Masih Kosong !!!");
-            } else {
-                tambahData();
-                resetForm();
-                loadTable();
-            }
+            tambahData();
+            resetForm();
+            loadTable();
         } else {
-            if (Nama.getText().trim().equals("")) {
-                JOptionPane.showMessageDialog(null, "Form Nama Masih Kosong !!!");
-            } else {
-                ubahData();
-                resetForm();
-                loadTable();
-            }
+            ubahData();
+            resetForm();
+            loadTable();
         }
     }//GEN-LAST:event_ButtonTambahUbahActionPerformed
 
@@ -489,9 +505,16 @@ public class TempatTugas extends javax.swing.JFrame {
         cari();
     }//GEN-LAST:event_TextCariActionPerformed
 
-    private void NamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NamaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NamaActionPerformed
+    private void KaryawanItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_KaryawanItemStateChanged
+
+    }//GEN-LAST:event_KaryawanItemStateChanged
+
+    private void KaryawanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KaryawanActionPerformed
+        comboKaryawanIndex = Karyawan.getSelectedIndex();
+        if (comboKaryawanIndex >= 0) {
+            selectedComboKaryawanIndex = comboKaryawanID.get(comboKaryawanIndex);
+        }
+    }//GEN-LAST:event_KaryawanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -510,14 +533,18 @@ public class TempatTugas extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TempatTugas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Gaji.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TempatTugas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Gaji.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TempatTugas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Gaji.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TempatTugas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Gaji.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -526,7 +553,7 @@ public class TempatTugas extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TempatTugas().setVisible(true);
+                new Gaji().setVisible(true);
             }
         });
     }
@@ -537,6 +564,7 @@ public class TempatTugas extends javax.swing.JFrame {
     private javax.swing.JButton ButtonTambahUbah;
     private javax.swing.JSpinner Gaji;
     private javax.swing.JSpinner Jabatan;
+    private javax.swing.JComboBox<String> Karyawan;
     private javax.swing.JSpinner Kehadiran;
     private javax.swing.JSpinner Keluarga;
     private javax.swing.JSpinner Komunikasi;
@@ -548,7 +576,6 @@ public class TempatTugas extends javax.swing.JFrame {
     private javax.swing.JLabel LabelCari5;
     private javax.swing.JLabel LabelCari6;
     private javax.swing.JLabel LabelCari7;
-    private javax.swing.JTextField Nama;
     private javax.swing.JSpinner Purna;
     private javax.swing.JScrollPane ScrollPane;
     private javax.swing.JTable TablePegawai;

@@ -36,7 +36,7 @@ import org.javalite.activejdbc.Base;
 import org.javalite.activejdbc.DBException;
 import org.javalite.activejdbc.LazyList;
 
-import test.test.Models.TempatTugasModel;
+import test.test.Models.GajiModel;
 import test.test.Models.KaryawanModel;
 import test.test.Models.MutasiModel;
 import test.test.Reports.Config;
@@ -95,10 +95,10 @@ public class Mutasi extends javax.swing.JFrame {
         Baru.removeAllItems();
         
         Base.open();
-        LazyList<TempatTugasModel> tempatTugass = TempatTugasModel.findAll();
+        LazyList<GajiModel> tempatTugass = GajiModel.findAll();
         LazyList<KaryawanModel> karyawans = KaryawanModel.findAll();
         
-        for(TempatTugasModel tempatTugas : tempatTugass) {
+        for(GajiModel tempatTugas : tempatTugass) {
             comboBaruID.add(Integer.parseInt(tempatTugas.getString("id")));
             Baru.addItem(tempatTugas.getString("nama_t_tugas"));
             
@@ -145,8 +145,8 @@ public class Mutasi extends javax.swing.JFrame {
                 String parsedtanggal = parsedFormat.format(tanggal);
                 
                 KaryawanModel karyawan = mutasi.parent(KaryawanModel.class);
-                TempatTugasModel tempatTugasLama = TempatTugasModel.findById(mutasi.getString("id_tempat_tugas_lama"));
-                TempatTugasModel tempatTugasBaru = TempatTugasModel.findById(mutasi.getString("id_tempat_tugas_baru"));
+                GajiModel tempatTugasLama = GajiModel.findById(mutasi.getString("id_tempat_tugas_lama"));
+                GajiModel tempatTugasBaru = GajiModel.findById(mutasi.getString("id_tempat_tugas_baru"));
                 
                 model.addRow(new Object[]{
                     mutasi.getId(),
