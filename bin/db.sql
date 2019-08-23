@@ -3,7 +3,7 @@
 -- Host: 127.0.0.1	Database: mutasi
 -- ------------------------------------------------------
 -- Server version 	5.5.5-10.3.16-MariaDB
--- Date: Sun, 18 Aug 2019 07:20:15 +0200
+-- Date: Fri, 23 Aug 2019 04:37:57 +0200
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -46,6 +46,70 @@ COMMIT;
 --
 
 --
+-- Table structure for table `gaji`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `gaji` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_karyawan` int(11) NOT NULL,
+  `gaji` int(11) NOT NULL,
+  `t_jabatan` int(11) NOT NULL,
+  `t_keluarga` int(11) NOT NULL,
+  `t_komunikasi` int(11) NOT NULL,
+  `u_kehadiran` int(11) NOT NULL,
+  `purna_tugas` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_karyawan` (`id_karyawan`),
+  CONSTRAINT `gaji_ibfk_1` FOREIGN KEY (`id_karyawan`) REFERENCES `karyawan` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `gaji`
+--
+
+LOCK TABLES `gaji` WRITE;
+/*!40000 ALTER TABLE `gaji` DISABLE KEYS */;
+SET autocommit=0;
+INSERT INTO `gaji` VALUES (11,8,220,330,440,550,660,770),(13,11,350,20,40,40,40,10);
+/*!40000 ALTER TABLE `gaji` ENABLE KEYS */;
+UNLOCK TABLES;
+COMMIT;
+
+-- Dumped table `gaji` with 2 row(s)
+--
+
+--
+-- Table structure for table `jabatan`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `jabatan` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `jabatan` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `jabatan`
+--
+
+LOCK TABLES `jabatan` WRITE;
+/*!40000 ALTER TABLE `jabatan` DISABLE KEYS */;
+SET autocommit=0;
+INSERT INTO `jabatan` VALUES (2,'Direktur'),(3,'Manager');
+/*!40000 ALTER TABLE `jabatan` ENABLE KEYS */;
+UNLOCK TABLES;
+COMMIT;
+
+-- Dumped table `jabatan` with 2 row(s)
+--
+
+--
 -- Table structure for table `karyawan`
 --
 
@@ -53,6 +117,7 @@ COMMIT;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `karyawan` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_jabatan` int(11) NOT NULL,
   `nama` varchar(50) NOT NULL,
   `nik` varchar(50) NOT NULL,
   `kelamin` varchar(50) NOT NULL,
@@ -62,8 +127,10 @@ CREATE TABLE `karyawan` (
   `pendidikan` varchar(50) NOT NULL,
   `pekerjaan` varchar(50) NOT NULL,
   `status_kawin` varchar(20) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id`),
+  KEY `id_jabatan` (`id_jabatan`),
+  CONSTRAINT `karyawan_ibfk_1` FOREIGN KEY (`id_jabatan`) REFERENCES `jabatan` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -73,7 +140,7 @@ CREATE TABLE `karyawan` (
 LOCK TABLES `karyawan` WRITE;
 /*!40000 ALTER TABLE `karyawan` DISABLE KEYS */;
 SET autocommit=0;
-INSERT INTO `karyawan` VALUES (2,'Agung Sapto Margono Dh','15753003','Laki-Laki','Nunggalrejo','2019-08-02','Islam','D3 Manajemen Informatika','Programmer','Lajang'),(3,'Ade Irma Rilyani','15753001','Perempuan','Way Halim','2019-08-14','Islam Juga','D3 MI','Gak tau apa','mmmmmmm');
+INSERT INTO `karyawan` VALUES (8,3,'Agung Sapto Margono Dh','15753003','Laki-Laki','Nunggalrejo, Punggur, Lampung Tengah','1997-03-25','Islam','D3','Programmer','Lajang'),(11,2,'Agung 2','15753003','Laki-Laki','Nunggalrejo, Punggur, Lampung Tengah','1997-03-25','Islam','D3','Programmer','Lajang');
 /*!40000 ALTER TABLE `karyawan` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
@@ -90,18 +157,14 @@ COMMIT;
 CREATE TABLE `mutasi` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_karyawan` int(11) NOT NULL,
-  `id_tempat_tugas_lama` int(11) NOT NULL,
-  `id_tempat_tugas_baru` int(11) NOT NULL,
   `tanggal` date NOT NULL,
   `no_surat` varchar(50) NOT NULL,
+  `asal` varchar(100) NOT NULL,
+  `tujuan` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_karyawan` (`id_karyawan`),
-  KEY `id_tempat_tugas` (`id_tempat_tugas_lama`),
-  KEY `id_tempat_tugas_baru` (`id_tempat_tugas_baru`),
-  CONSTRAINT `mutasi_ibfk_1` FOREIGN KEY (`id_karyawan`) REFERENCES `karyawan` (`id`),
-  CONSTRAINT `mutasi_ibfk_2` FOREIGN KEY (`id_tempat_tugas_lama`) REFERENCES `tempat_tugas` (`id`),
-  CONSTRAINT `mutasi_ibfk_3` FOREIGN KEY (`id_tempat_tugas_baru`) REFERENCES `tempat_tugas` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  CONSTRAINT `mutasi_ibfk_1` FOREIGN KEY (`id_karyawan`) REFERENCES `karyawan` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -111,46 +174,12 @@ CREATE TABLE `mutasi` (
 LOCK TABLES `mutasi` WRITE;
 /*!40000 ALTER TABLE `mutasi` DISABLE KEYS */;
 SET autocommit=0;
-INSERT INTO `mutasi` VALUES (1,3,1,2,'2019-08-18','1234'),(2,2,4,3,'2019-08-14','5476');
+INSERT INTO `mutasi` VALUES (9,8,'2019-08-02','12345','qq','aa'),(10,11,'2019-08-03','2345','aa','zz');
 /*!40000 ALTER TABLE `mutasi` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
 
 -- Dumped table `mutasi` with 2 row(s)
---
-
---
--- Table structure for table `tempat_tugas`
---
-
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tempat_tugas` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nama_t_tugas` varchar(50) NOT NULL,
-  `gaji` int(11) NOT NULL,
-  `t_jabatan` int(11) NOT NULL,
-  `t_keluarga` int(11) NOT NULL,
-  `t_komunikasi` int(11) NOT NULL,
-  `u_kehadiran` int(11) NOT NULL,
-  `purna_tugas` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tempat_tugas`
---
-
-LOCK TABLES `tempat_tugas` WRITE;
-/*!40000 ALTER TABLE `tempat_tugas` DISABLE KEYS */;
-SET autocommit=0;
-INSERT INTO `tempat_tugas` VALUES (1,'Test 1',1000,2000,3000,4000,5000,6000),(2,'Test 2',1000,2000,3000,4000,5000,6000),(3,'Test 3',1000,2000,3000,4000,5000,6000),(4,'Test 2 3 4',12000,23000,34000,45000,56000,67000);
-/*!40000 ALTER TABLE `tempat_tugas` ENABLE KEYS */;
-UNLOCK TABLES;
-COMMIT;
-
--- Dumped table `tempat_tugas` with 4 row(s)
 --
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -162,4 +191,4 @@ COMMIT;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on: Sun, 18 Aug 2019 07:20:15 +0200
+-- Dump completed on: Fri, 23 Aug 2019 04:37:57 +0200

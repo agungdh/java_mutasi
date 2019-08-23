@@ -91,20 +91,9 @@ public class Mutasi extends javax.swing.JFrame {
     
     public void loadComboBox() {
         Karyawan.removeAllItems();
-        Lama.removeAllItems();
-        Baru.removeAllItems();
         
         Base.open();
-        LazyList<GajiModel> tempatTugass = GajiModel.findAll();
         LazyList<KaryawanModel> karyawans = KaryawanModel.findAll();
-        
-        for(GajiModel tempatTugas : tempatTugass) {
-            comboBaruID.add(Integer.parseInt(tempatTugas.getString("id")));
-            Baru.addItem(tempatTugas.getString("nama_t_tugas"));
-            
-            comboLamaID.add(Integer.parseInt(tempatTugas.getString("id")));
-            Lama.addItem(tempatTugas.getString("nama_t_tugas"));
-        }
         
         for(KaryawanModel karyawan : karyawans) {
             comboKaryawanID.add(Integer.parseInt(karyawan.getString("id")));
@@ -128,8 +117,6 @@ public class Mutasi extends javax.swing.JFrame {
         model.addColumn("#ID");
         model.addColumn("NIK");
         model.addColumn("Nama");
-        model.addColumn("T. Tugas Lama");
-        model.addColumn("T. Tugas Baru");
         model.addColumn("No Surat");
         model.addColumn("Tanggal");
         
@@ -145,15 +132,11 @@ public class Mutasi extends javax.swing.JFrame {
                 String parsedtanggal = parsedFormat.format(tanggal);
                 
                 KaryawanModel karyawan = mutasi.parent(KaryawanModel.class);
-                GajiModel tempatTugasLama = GajiModel.findById(mutasi.getString("id_tempat_tugas_lama"));
-                GajiModel tempatTugasBaru = GajiModel.findById(mutasi.getString("id_tempat_tugas_baru"));
                 
                 model.addRow(new Object[]{
                     mutasi.getId(),
                     karyawan.getString("nik"),
                     karyawan.getString("nama"),
-                    tempatTugasLama.getString("nama_t_tugas"),
-                    tempatTugasBaru.getString("nama_t_tugas"),
                     mutasi.getString("no_surat"),
                     parsedtanggal
                 });
@@ -222,9 +205,9 @@ public class Mutasi extends javax.swing.JFrame {
         try {
             MutasiModel mutasi = new MutasiModel();
             mutasi.set("no_surat", No.getText());
+            mutasi.set("asal", Asal.getText());
+            mutasi.set("tujuan", Tujuan.getText());
             mutasi.set("id_karyawan", selectedComboKaryawanIndex);
-            mutasi.set("id_tempat_tugas_lama", selectedComboLamaIndex);
-            mutasi.set("id_tempat_tugas_baru", selectedComboBaruIndex);
             mutasi.set("tanggal", dateFormat.format(Tanggal.getDate()));
             mutasi.save();
         } catch (Exception e) {
@@ -239,9 +222,9 @@ public class Mutasi extends javax.swing.JFrame {
         try {
             MutasiModel mutasi = MutasiModel.findById(ID);
             mutasi.set("no_surat", No.getText());
+            mutasi.set("asal", Asal.getText());
+            mutasi.set("tujuan", Tujuan.getText());
             mutasi.set("id_karyawan", selectedComboKaryawanIndex);
-            mutasi.set("id_tempat_tugas_lama", selectedComboLamaIndex);
-            mutasi.set("id_tempat_tugas_baru", selectedComboBaruIndex);
             mutasi.set("tanggal", dateFormat.format(Tanggal.getDate()));
             mutasi.save();
         } catch (Exception e) {
@@ -252,9 +235,9 @@ public class Mutasi extends javax.swing.JFrame {
 
     private void resetForm() {
         No.setText("");
+        Asal.setText("");
+        Tujuan.setText("");
         Tanggal.setDate(null);
-        Lama.setSelectedIndex(0);
-        Baru.setSelectedIndex(0);
         Karyawan.setSelectedIndex(0);
     }
 
@@ -280,10 +263,10 @@ public class Mutasi extends javax.swing.JFrame {
         Tanggal = new com.toedter.calendar.JDateChooser();
         Karyawan = new javax.swing.JComboBox<>();
         LabelCari2 = new javax.swing.JLabel();
+        Asal = new javax.swing.JTextField();
         LabelCari3 = new javax.swing.JLabel();
+        Tujuan = new javax.swing.JTextField();
         LabelCari5 = new javax.swing.JLabel();
-        Lama = new javax.swing.JComboBox<>();
-        Baru = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Mutasi");
@@ -365,78 +348,72 @@ public class Mutasi extends javax.swing.JFrame {
 
         LabelCari2.setText("Karyawan");
 
-        LabelCari3.setText("Tempat Tugas Lama");
-
-        LabelCari5.setText("Tempat Tugas Baru");
-
-        Lama.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        Lama.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                LamaItemStateChanged(evt);
-            }
-        });
-        Lama.addActionListener(new java.awt.event.ActionListener() {
+        Asal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LamaActionPerformed(evt);
+                AsalActionPerformed(evt);
             }
         });
 
-        Baru.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        Baru.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                BaruItemStateChanged(evt);
-            }
-        });
-        Baru.addActionListener(new java.awt.event.ActionListener() {
+        LabelCari3.setText("Asal");
+
+        Tujuan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BaruActionPerformed(evt);
+                TujuanActionPerformed(evt);
             }
         });
+
+        LabelCari5.setText("Tujuan");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(ScrollPane)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(123, 123, 123)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(LabelCari5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(LabelCari3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
-                            .addComponent(LabelCari2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(LabelCari5, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52)
+                        .addComponent(Tujuan, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(LabelCari3, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52)
+                        .addComponent(Asal, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(123, 123, 123)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Baru, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Lama, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Karyawan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(117, 117, 117))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(LabelCari, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
-                                .addComponent(TextCari, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(LabelCari1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(LabelCari4, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(52, 52, 52)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(Tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(No, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(ButtonTambahUbah)
+                                        .addGap(29, 29, 29)
+                                        .addComponent(ButtonRefresh)
+                                        .addGap(28, 28, 28)
+                                        .addComponent(ButtonResetHapus)
+                                        .addGap(86, 86, 86))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(LabelCari, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(28, 28, 28)
+                                        .addComponent(TextCari, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(LabelCari1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(LabelCari4, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(52, 52, 52)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(No, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(110, 110, 110))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(ButtonTambahUbah)
-                .addGap(29, 29, 29)
-                .addComponent(ButtonRefresh)
-                .addGap(28, 28, 28)
-                .addComponent(ButtonResetHapus)
-                .addGap(203, 203, 203))
+                                .addComponent(LabelCari2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(Karyawan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addGap(110, 110, 110))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -445,15 +422,7 @@ public class Mutasi extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LabelCari2)
                     .addComponent(Karyawan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LabelCari3)
-                    .addComponent(Lama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LabelCari5)
-                    .addComponent(Baru, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LabelCari1)
                     .addComponent(No, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -461,18 +430,26 @@ public class Mutasi extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(LabelCari4)
                     .addComponent(Tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LabelCari3)
+                    .addComponent(Asal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LabelCari5)
+                    .addComponent(Tujuan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ButtonRefresh)
                     .addComponent(ButtonTambahUbah)
                     .addComponent(ButtonResetHapus))
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TextCari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LabelCari))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -501,9 +478,10 @@ public class Mutasi extends javax.swing.JFrame {
 
             No.setText(mutasi.getString("no_surat"));
             
+            Asal.setText(mutasi.getString("asal"));
+            Tujuan.setText(mutasi.getString("tujuan"));
+            
             Karyawan.setSelectedIndex(comboKaryawanID.indexOf(Integer.parseInt(mutasi.getString("id_karyawan"))));
-            Lama.setSelectedIndex(comboLamaID.indexOf(Integer.parseInt(mutasi.getString("id_tempat_tugas_lama"))));
-            Baru.setSelectedIndex(comboBaruID.indexOf(Integer.parseInt(mutasi.getString("id_tempat_tugas_baru"))));
             
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             
@@ -521,6 +499,10 @@ public class Mutasi extends javax.swing.JFrame {
         if (state.equals("index")) {
             if (No.getText().trim().equals("")) {
                 JOptionPane.showMessageDialog(null, "Form No Surat Masih Kosong !!!");
+            } else if (Asal.getText().trim().equals("")) {
+                JOptionPane.showMessageDialog(null, "Form Asal Masih Kosong !!!");
+            } else if (Tujuan.getText().trim().equals("")) {
+                JOptionPane.showMessageDialog(null, "Form Tujuan Masih Kosong !!!");
             } else if (Tanggal.getDate() == null) {
                 JOptionPane.showMessageDialog(null, "Form Tanggal Masih Kosong !!!");
             } else {
@@ -529,8 +511,12 @@ public class Mutasi extends javax.swing.JFrame {
                 loadTable();
             }
         } else {
-             if (No.getText().trim().equals("")) {
+            if (No.getText().trim().equals("")) {
                 JOptionPane.showMessageDialog(null, "Form No Surat Masih Kosong !!!");
+            } else if (Asal.getText().trim().equals("")) {
+                JOptionPane.showMessageDialog(null, "Form Asal Masih Kosong !!!");
+            } else if (Tujuan.getText().trim().equals("")) {
+                JOptionPane.showMessageDialog(null, "Form Tujuan Masih Kosong !!!");
             } else if (Tanggal.getDate() == null) {
                 JOptionPane.showMessageDialog(null, "Form Tanggal Masih Kosong !!!");
             } else {
@@ -569,27 +555,13 @@ public class Mutasi extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_KaryawanActionPerformed
 
-    private void LamaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_LamaItemStateChanged
+    private void AsalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AsalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_LamaItemStateChanged
+    }//GEN-LAST:event_AsalActionPerformed
 
-    private void LamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LamaActionPerformed
-        comboLamaIndex = Lama.getSelectedIndex();
-        if (comboLamaIndex >= 0) {
-            selectedComboLamaIndex = comboLamaID.get(comboLamaIndex);
-        }
-    }//GEN-LAST:event_LamaActionPerformed
-
-    private void BaruItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_BaruItemStateChanged
+    private void TujuanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TujuanActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_BaruItemStateChanged
-
-    private void BaruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BaruActionPerformed
-        comboBaruIndex = Baru.getSelectedIndex();
-        if (comboBaruIndex >= 0) {
-            selectedComboBaruIndex = comboBaruID.get(comboBaruIndex);
-        }
-    }//GEN-LAST:event_BaruActionPerformed
+    }//GEN-LAST:event_TujuanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -642,7 +614,7 @@ public class Mutasi extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> Baru;
+    private javax.swing.JTextField Asal;
     private javax.swing.JButton ButtonRefresh;
     private javax.swing.JButton ButtonResetHapus;
     private javax.swing.JButton ButtonTambahUbah;
@@ -653,11 +625,11 @@ public class Mutasi extends javax.swing.JFrame {
     private javax.swing.JLabel LabelCari3;
     private javax.swing.JLabel LabelCari4;
     private javax.swing.JLabel LabelCari5;
-    private javax.swing.JComboBox<String> Lama;
     private javax.swing.JTextField No;
     private javax.swing.JScrollPane ScrollPane;
     private javax.swing.JTable TablePegawai;
     private com.toedter.calendar.JDateChooser Tanggal;
     private javax.swing.JTextField TextCari;
+    private javax.swing.JTextField Tujuan;
     // End of variables declaration//GEN-END:variables
 }
