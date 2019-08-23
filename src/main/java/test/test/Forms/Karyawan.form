@@ -56,6 +56,7 @@
                               <Component id="LabelCari3" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
                               <Component id="LabelCari8" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
                               <Component id="LabelCari9" min="-2" pref="65" max="-2" attributes="0"/>
+                              <Component id="LabelCari10" min="-2" pref="65" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -72,6 +73,7 @@
                                   <Component id="Pekerjaan" alignment="0" pref="319" max="32767" attributes="0"/>
                                   <Component id="Kawin" alignment="0" pref="319" max="32767" attributes="0"/>
                                   <Component id="Tempat" alignment="0" pref="319" max="32767" attributes="0"/>
+                                  <Component id="Jabatan" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -141,7 +143,12 @@
                   <Component id="LabelCari8" min="-2" max="-2" attributes="0"/>
                   <Component id="Kawin" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="30" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="Jabatan" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="LabelCari10" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="14" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="ButtonRefresh" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="ButtonTambahUbah" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -315,6 +322,30 @@
     <Component class="javax.swing.JLabel" name="LabelCari9">
       <Properties>
         <Property name="text" type="java.lang.String" value="Tempat Lahir"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="Jabatan">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="JabatanItemStateChanged"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JabatanActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LabelCari10">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Jabatan"/>
       </Properties>
     </Component>
   </SubComponents>

@@ -35,6 +35,7 @@ import net.sf.jasperreports.view.JasperViewer;
 import org.javalite.activejdbc.Base;
 import org.javalite.activejdbc.DBException;
 import org.javalite.activejdbc.LazyList;
+import test.test.Models.JabatanModel;
 
 import test.test.Models.TempatTugasModel;
 import test.test.Models.KaryawanModel;
@@ -45,9 +46,10 @@ import test.test.Reports.Config;
  * @author user
  */
 public class Karyawan extends javax.swing.JFrame {
-    private List<Integer> comboPangkatGolID = new ArrayList<Integer>();
-    private int comboPangkatGolIndex;
-    private int selectedComboPangkatGolIndex;
+    private List<Integer> comboJabatanID = new ArrayList<Integer>();
+    private int comboJabatanIndex;
+    private int selectedComboJabatanIndex;
+    
     private DefaultTableModel model = new DefaultTableModel();
     private String ID;
     private String state;
@@ -74,7 +76,22 @@ public class Karyawan extends javax.swing.JFrame {
             }
         });
         
+        loadComboBox();
+        
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+    }
+    
+    public void loadComboBox() {
+        Jabatan.removeAllItems();
+        Base.open();
+        LazyList<JabatanModel> jabatans = JabatanModel.findAll();
+        
+        for(JabatanModel jabatan : jabatans) {
+            comboJabatanID.add(Integer.parseInt(jabatan.getString("id")));
+            Jabatan.addItem(jabatan.getString("jabatan"));
+        }
+
+        Base.close();
     }
     
     public void cari() {
@@ -199,6 +216,7 @@ public class Karyawan extends javax.swing.JFrame {
             karyawan.set("pendidikan", Pendidikan.getText());
             karyawan.set("pekerjaan", Pekerjaan.getText());
             karyawan.set("status_kawin", Kawin.getText());
+            karyawan.set("id_jabatan", selectedComboJabatanIndex);
             karyawan.save();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -224,6 +242,7 @@ public class Karyawan extends javax.swing.JFrame {
             karyawan.set("pendidikan", Pendidikan.getText());
             karyawan.set("pekerjaan", Pekerjaan.getText());
             karyawan.set("status_kawin", Kawin.getText());
+            karyawan.set("id_jabatan", selectedComboJabatanIndex);
             karyawan.save();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -242,6 +261,7 @@ public class Karyawan extends javax.swing.JFrame {
         TanggalLahir.setDate(null);
         laki.setSelected(false);
         perempuan.setSelected(false);
+        Jabatan.setSelectedIndex(0);
     }
 
     /**
@@ -279,6 +299,8 @@ public class Karyawan extends javax.swing.JFrame {
         Kawin = new javax.swing.JTextField();
         Tempat = new javax.swing.JTextField();
         LabelCari9 = new javax.swing.JLabel();
+        Jabatan = new javax.swing.JComboBox<>();
+        LabelCari10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Karyawan");
@@ -410,6 +432,20 @@ public class Karyawan extends javax.swing.JFrame {
 
         LabelCari9.setText("Tempat Lahir");
 
+        Jabatan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        Jabatan.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                JabatanItemStateChanged(evt);
+            }
+        });
+        Jabatan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JabatanActionPerformed(evt);
+            }
+        });
+
+        LabelCari10.setText("Jabatan");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -438,7 +474,8 @@ public class Karyawan extends javax.swing.JFrame {
                                 .addComponent(LabelCari4, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(LabelCari3, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(LabelCari8, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(LabelCari9, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(LabelCari9, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(LabelCari10, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
@@ -452,7 +489,8 @@ public class Karyawan extends javax.swing.JFrame {
                                     .addComponent(Pendidikan, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
                                     .addComponent(Pekerjaan, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
                                     .addComponent(Kawin, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
-                                    .addComponent(Tempat, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE))))))
+                                    .addComponent(Tempat, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
+                                    .addComponent(Jabatan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addGap(110, 110, 110))
             .addGroup(layout.createSequentialGroup()
                 .addGap(185, 185, 185)
@@ -504,7 +542,11 @@ public class Karyawan extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(LabelCari8)
                     .addComponent(Kawin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Jabatan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LabelCari10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ButtonRefresh)
                     .addComponent(ButtonTambahUbah)
@@ -549,6 +591,7 @@ public class Karyawan extends javax.swing.JFrame {
             Pendidikan.setText(karyawan.getString("pendidikan"));
             Pekerjaan.setText(karyawan.getString("pekerjaan"));
             Kawin.setText(karyawan.getString("status_kawin"));
+            Jabatan.setSelectedIndex(comboJabatanID.indexOf(Integer.parseInt(karyawan.getString("id_jabatan"))));
             
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             
@@ -671,6 +714,17 @@ public class Karyawan extends javax.swing.JFrame {
         laki.setSelected(false);
     }//GEN-LAST:event_perempuanActionPerformed
 
+    private void JabatanItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JabatanItemStateChanged
+
+    }//GEN-LAST:event_JabatanItemStateChanged
+
+    private void JabatanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JabatanActionPerformed
+        comboJabatanIndex = Jabatan.getSelectedIndex();
+        if (comboJabatanIndex >= 0) {
+            selectedComboJabatanIndex = comboJabatanID.get(comboJabatanIndex);
+        }
+    }//GEN-LAST:event_JabatanActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -718,9 +772,11 @@ public class Karyawan extends javax.swing.JFrame {
     private javax.swing.JButton ButtonRefresh;
     private javax.swing.JButton ButtonResetHapus;
     private javax.swing.JButton ButtonTambahUbah;
+    private javax.swing.JComboBox<String> Jabatan;
     private javax.swing.JTextField Kawin;
     private javax.swing.JLabel LabelCari;
     private javax.swing.JLabel LabelCari1;
+    private javax.swing.JLabel LabelCari10;
     private javax.swing.JLabel LabelCari2;
     private javax.swing.JLabel LabelCari3;
     private javax.swing.JLabel LabelCari4;
