@@ -204,13 +204,13 @@ public class MenuUtama extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        new Cetak().setVisible(true);
+        new CetakMutasi().setVisible(true);
         
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        new Laporan().setVisible(true);
+        new CetakLaporanKaryawan().setVisible(true);
         
         this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -222,7 +222,9 @@ public class MenuUtama extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+        new CetakGaji().setVisible(true);
+        
+        this.dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
