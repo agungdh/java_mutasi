@@ -1,8 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="mutasi" language="groovy" pageWidth="595" pageHeight="1153" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d6f7b833-febc-4e73-9783-4d450524d56f">
-	<property name="ireport.zoom" value="0.8264462809917404"/>
+	<property name="ireport.zoom" value="1.2100000000000084"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="524"/>
+	<property name="ireport.y" value="931"/>
+	<queryString>
+		<![CDATA[SELECT m.*, k.nama, k.nik, j.jabatan, k.tempat_lahir,
+concat(lpad(day(m.tanggal), 2, 0), '-', lpad(month(m.tanggal), 2, 0), '-', year(m.tanggal)) tanggal_parsed,
+concat(lpad(day(k.tanggal_lahir), 2, 0), '-', lpad(month(k.tanggal_lahir), 2, 0), '-', year(k.tanggal_lahir)) tanggal_lahir_parsed
+FROM mutasi m, karyawan k, jabatan j
+WHERE m.id_karyawan = k.id
+AND k.id_jabatan = j.id]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id_karyawan" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tanggal" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="no_surat" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="asal" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tujuan" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nama" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nik" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jabatan" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tempat_lahir" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tanggal_parsed" class="java.lang.String"/>
+	<field name="tanggal_lahir_parsed" class="java.lang.String"/>
 	<title>
 		<band height="1113" splitType="Stretch">
 			<staticText>
@@ -53,11 +93,11 @@
 				<text><![CDATA[PENGURUS KSPPS BMT MENTARI MUAMALAT MANDIRI]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="170" y="172" width="227" height="20" uuid="3e93d59e-e014-43e3-96be-8f6eb0835b84"/>
+				<reportElement x="170" y="172" width="48" height="20" uuid="3e93d59e-e014-43e3-96be-8f6eb0835b84"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Nomor : NO]]></text>
+				<text><![CDATA[Nomor :]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="257" y="209" width="52" height="20" uuid="1f39f77c-6114-4b04-a367-e9e18952474a"/>
@@ -166,8 +206,8 @@
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="94" y="469" width="353" height="20" uuid="50ccd6ff-c19f-4979-9f92-1151024a89e0"/>
-				<text><![CDATA[Keputusan rapat Pengurus dan Pengawas pada tanggal : TANGGAL.]]></text>
+				<reportElement x="94" y="469" width="258" height="20" uuid="50ccd6ff-c19f-4979-9f92-1151024a89e0"/>
+				<text><![CDATA[Keputusan rapat Pengurus dan Pengawas pada tanggal :]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="233" y="489" width="102" height="20" uuid="35cdd589-8c8e-469b-b054-e43a2b62db48"/>
@@ -233,32 +273,8 @@
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="218" y="540" width="113" height="20" uuid="aa3870e2-963a-440b-8426-ec0073a32ffe"/>
-				<text><![CDATA[TANGGAL]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="94" y="560" width="244" height="20" uuid="6c314ba6-0fe9-478a-8b45-10d618a29cfc"/>
 				<text><![CDATA[memindahkan Pengelola yang tercantum dibawaha ini]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="218" y="580" width="91" height="20" uuid="31ddbdad-02d5-40ea-b744-523fca5ee8f6"/>
-				<text><![CDATA[NAMA]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="218" y="600" width="91" height="20" uuid="de6cacad-0bcc-431c-9d79-eb93e4a3637a"/>
-				<text><![CDATA[NIK]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="218" y="620" width="151" height="20" uuid="e7fdeec2-150d-430b-9f2f-b175ef29996a"/>
-				<text><![CDATA[TEMPAT TANGGAL LAHIR]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="218" y="640" width="91" height="20" uuid="c664b0b2-be6e-44f8-8a6f-91a46a9c36fd"/>
-				<text><![CDATA[TUGAS LAMA]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="218" y="660" width="91" height="20" uuid="1d0484af-1c90-4557-afd4-b295ffdfd133"/>
-				<text><![CDATA[TUGAS BARU]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="78" y="680" width="11" height="20" uuid="5e70d149-3367-4863-8237-8e8ea241a12e"/>
@@ -317,10 +333,6 @@
 				<text><![CDATA[KOTAGAJAH]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="430" y="794" width="76" height="15" uuid="e8067807-9236-4833-a024-91ba940f38e4"/>
-				<text><![CDATA[TANGGAL]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="369" y="839" width="61" height="15" uuid="909c06ab-efcd-4848-b20b-b1042823a8a5"/>
 				<text><![CDATA[PENGURUS KSPPS]]></text>
 			</staticText>
@@ -375,6 +387,45 @@
 				</textElement>
 				<text><![CDATA[3. Arsip.]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="218" y="172" width="229" height="20" uuid="8bffb52a-5890-4143-8555-0d6f2434a318"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{no_surat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="218" y="540" width="100" height="20" uuid="8c1692f3-2944-4ac4-9730-f01d1c7418a0"/>
+				<textFieldExpression><![CDATA[$F{tanggal_parsed}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="218" y="580" width="100" height="20" uuid="7fcd7793-a0e2-441f-9120-835b4971db69"/>
+				<textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="218" y="600" width="100" height="20" uuid="4aa49f7a-7379-4cbc-9f3e-3251d9f5ff31"/>
+				<textFieldExpression><![CDATA[$F{nik}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="218" y="620" width="337" height="20" uuid="4cb5ba91-ef20-4b71-b906-9d5398e7516f"/>
+				<textFieldExpression><![CDATA[$F{tempat_lahir} + ", " + $F{tanggal_lahir_parsed}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="218" y="640" width="100" height="20" uuid="0903d830-df90-49fc-9176-bd7f7aa54374"/>
+				<textFieldExpression><![CDATA[$F{asal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="218" y="660" width="100" height="20" uuid="64940da7-fa06-40d2-a6a5-27523b0f7934"/>
+				<textFieldExpression><![CDATA[$F{tujuan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="354" y="469" width="100" height="20" uuid="c8169a26-6289-4b53-8a4b-993f2782fb1b"/>
+				<textFieldExpression><![CDATA[$F{tanggal_parsed}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="430" y="794" width="100" height="15" uuid="ca164e75-910e-48da-bb59-fb13fe96c106"/>
+				<textFieldExpression><![CDATA[$F{tanggal_parsed}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 </jasperReport>
