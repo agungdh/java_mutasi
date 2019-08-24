@@ -5,7 +5,15 @@
  */
 package test.test.Forms;
 
+import java.sql.Connection;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JFrame;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
+import test.test.Reports.Config;
 
 /**
  *
@@ -91,7 +99,23 @@ public class CetakMutasi extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+        try{
+            Config objkoneksi = new Config();
+            Connection con = objkoneksi.bukakoneksi();
+            String fileName="src/main/java/test/test/Reports/mutasi.jrxml";
+            String filetoFill="src/main/java/test/test/Reports/mutasi.jasper";
+            JasperCompileManager.compileReport(fileName);
+            
+            Map param= new HashMap();
+            param.put("no", nik.getText());
+            
+            JasperFillManager.fillReport(filetoFill, param, con);
+            JasperPrint jp=JasperFillManager.fillReport(filetoFill, param,con);
+            JasperViewer.viewReport(jp,false);
+
+        }catch(Exception ex){
+            System.out.println(ex.toString());
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

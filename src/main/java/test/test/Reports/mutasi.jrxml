@@ -2,14 +2,18 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="mutasi" language="groovy" pageWidth="595" pageHeight="1153" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d6f7b833-febc-4e73-9783-4d450524d56f">
 	<property name="ireport.zoom" value="1.2100000000000084"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="931"/>
+	<property name="ireport.y" value="425"/>
+	<parameter name="no" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[SELECT m.*, k.nama, k.nik, j.jabatan, k.tempat_lahir,
 concat(lpad(day(m.tanggal), 2, 0), '-', lpad(month(m.tanggal), 2, 0), '-', year(m.tanggal)) tanggal_parsed,
 concat(lpad(day(k.tanggal_lahir), 2, 0), '-', lpad(month(k.tanggal_lahir), 2, 0), '-', year(k.tanggal_lahir)) tanggal_lahir_parsed
 FROM mutasi m, karyawan k, jabatan j
 WHERE m.id_karyawan = k.id
-AND k.id_jabatan = j.id]]>
+AND k.id_jabatan = j.id
+AND m.no_surat = $P{no}]]>
 	</queryString>
 	<field name="id" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
