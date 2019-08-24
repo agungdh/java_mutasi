@@ -164,7 +164,7 @@ public class Karyawan extends javax.swing.JFrame {
 
     private void loadTable(String cari) {
         Base.open();
-        LazyList<KaryawanModel> karyawan = KaryawanModel.where("nama like ? or nik like ?", '%' + cari + '%', '%' + cari + '%');
+        LazyList<KaryawanModel> karyawan = KaryawanModel.where("nama like ? or nik like ? or kelamin like ?", '%' + cari + '%', '%' + cari + '%', '%' + cari + '%');
         Base.close();
         
         loadTableHelper(karyawan);
@@ -354,7 +354,7 @@ public class Karyawan extends javax.swing.JFrame {
             }
         });
 
-        LabelCari.setText("Cari (NIK / Nama)");
+        LabelCari.setText("Cari (NIK / Nama / Jenis Kelamin)");
 
         Nama.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -454,7 +454,7 @@ public class Karyawan extends javax.swing.JFrame {
                 .addComponent(ScrollPane)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 123, Short.MAX_VALUE)
+                .addGap(0, 77, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(LabelCari7, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LabelCari6, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -491,7 +491,7 @@ public class Karyawan extends javax.swing.JFrame {
                                     .addComponent(Kawin, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
                                     .addComponent(Tempat, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
                                     .addComponent(Jabatan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-                .addGap(110, 110, 110))
+                .addGap(92, 92, 92))
             .addGroup(layout.createSequentialGroup()
                 .addGap(185, 185, 185)
                 .addComponent(ButtonTambahUbah)
