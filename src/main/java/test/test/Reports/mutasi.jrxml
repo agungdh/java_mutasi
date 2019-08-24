@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="mutasi" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d6f7b833-febc-4e73-9783-4d450524d56f">
-	<property name="ireport.zoom" value="1.7715610000000068"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="mutasi" language="groovy" pageWidth="595" pageHeight="1153" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d6f7b833-febc-4e73-9783-4d450524d56f">
+	<property name="ireport.zoom" value="0.8264462809917404"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="1132"/>
+	<property name="ireport.y" value="524"/>
 	<title>
-		<band height="802" splitType="Stretch">
+		<band height="1113" splitType="Stretch">
 			<staticText>
 				<reportElement x="153" y="0" width="277" height="20" uuid="abbb7052-0cc4-4da6-bd10-90a7901269dd"/>
 				<text><![CDATA[KOPERASI SIMPAN PINJAM DAN PEMBIAYAAN SYARI'AH]]></text>
@@ -295,6 +295,85 @@
 			<staticText>
 				<reportElement x="94" y="746" width="461" height="33" uuid="e8c0b0ee-5586-4706-b85e-a69a9421ed11"/>
 				<text><![CDATA[Keputusan ini berlaku sejak tanggal ditetapkan, apabila dikemudian hari terdapat kekeliruan akan diperbaiki sebagaimana mestinya.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="342" y="779" width="76" height="15" uuid="b0de5888-1e5f-4fcf-b2ab-b0c539141264"/>
+				<text><![CDATA[Ditetapkan di]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="342" y="794" width="76" height="15" uuid="59f013fd-1a9e-4a25-9597-912faea724d5"/>
+				<text><![CDATA[Pada Tanggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="418" y="779" width="11" height="15" uuid="4ec84a0c-635a-44a7-ab2f-bfccaec55b24"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="419" y="794" width="11" height="15" uuid="9be0f3c5-f019-47b4-87ca-10eb629045cb"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="430" y="779" width="76" height="15" uuid="4653c3b4-ace7-43f4-9177-31053b1e6e10"/>
+				<text><![CDATA[KOTAGAJAH]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="430" y="794" width="76" height="15" uuid="e8067807-9236-4833-a024-91ba940f38e4"/>
+				<text><![CDATA[TANGGAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="369" y="839" width="61" height="15" uuid="909c06ab-efcd-4848-b20b-b1042823a8a5"/>
+				<text><![CDATA[PENGURUS KSPPS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="854" width="248" height="20" uuid="7884d758-5dc1-49b9-9ae6-cdfeee53fdce"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[BMT MENTARI MUAMALAT MANDIRI KOTAGAJAH]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="281" y="874" width="61" height="15" uuid="027237d4-d1d3-4d00-bc6f-a9cc0b1a4abe"/>
+				<text><![CDATA[Ketua]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="466" y="874" width="61" height="15" uuid="05905f9d-774e-475f-97f3-79bbdeb21f00"/>
+				<text><![CDATA[Sekretaris,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="281" y="954" width="116" height="15" uuid="ece68d45-7731-4746-8418-2d2fb8b3cc8b"/>
+				<text><![CDATA[SUPRIYANTO, AMd.Sy]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="466" y="954" width="89" height="15" uuid="3d7e0e41-d68c-4bfc-b888-693c70cd8387"/>
+				<text><![CDATA[Drs. SUBANDI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="989" width="64" height="15" uuid="33224d6b-de1f-4e02-b015-c5a099379bf5"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tembusan :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="55" y="1004" width="178" height="15" uuid="37c36eee-fcaf-46e5-8da7-372bab8fa7ee"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[1. Sdr. Kabag. Admin. dan SDI.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="55" y="1019" width="178" height="15" uuid="88d88693-44b6-44f0-8863-0772c0ac6e5b"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[2. Sdr. Kepala Cabang Mandala]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="55" y="1034" width="178" height="15" uuid="acebfe71-a5de-41ae-b8f5-a14b106b9aa4"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[3. Arsip.]]></text>
 			</staticText>
 		</band>
 	</title>
