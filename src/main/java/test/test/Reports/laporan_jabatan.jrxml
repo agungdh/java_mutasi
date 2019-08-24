@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="laporan" language="groovy" pageWidth="1351" pageHeight="595" orientation="Landscape" columnWidth="1311" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3490c0fd-af31-446b-a29d-8081a76ee146">
-	<property name="ireport.zoom" value="1.1000000000000127"/>
-	<property name="ireport.x" value="327"/>
+	<property name="ireport.zoom" value="0.385543289429536"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
@@ -15,11 +15,15 @@
 			</style>
 		</conditionalStyle>
 	</style>
+	<parameter name="id_jabatan" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[SELECT k.*, j.jabatan,
 concat(lpad(day(k.tanggal_lahir), 2, 0), '-', lpad(month(k.tanggal_lahir), 2, 0), '-', year(k.tanggal_lahir)) tanggal_parsed
 FROM karyawan k, jabatan j
-WHERE k.id_jabatan = j.id]]>
+WHERE k.id_jabatan = j.id
+AND j.id = $P{id_jabatan}]]>
 	</queryString>
 	<field name="id" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
