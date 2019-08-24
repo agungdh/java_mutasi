@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="mutasi" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d6f7b833-febc-4e73-9783-4d450524d56f">
-	<property name="ireport.zoom" value="1.771561000000005"/>
-	<property name="ireport.x" value="64"/>
-	<property name="ireport.y" value="622"/>
+	<property name="ireport.zoom" value="1.6105100000000057"/>
+	<property name="ireport.x" value="57"/>
+	<property name="ireport.y" value="204"/>
 	<title>
 		<band height="802" splitType="Stretch">
 			<staticText>
@@ -57,7 +57,7 @@
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Nomor : 026/KEP/KSPPS/1.0/D/BMT-M3/II/2018]]></text>
+				<text><![CDATA[Nomor : NO]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="257" y="209" width="52" height="20" uuid="1f39f77c-6114-4b04-a367-e9e18952474a"/>
@@ -78,11 +78,11 @@
 				<text><![CDATA[Pengurus KSPPS BMT Mentari Muamalat Mandiri Kotagajah :]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="269" width="67" height="20" uuid="c65b425a-ba12-4894-a0f3-dfb3ef4dfe5f"/>
+				<reportElement x="0" y="269" width="76" height="20" uuid="c65b425a-ba12-4894-a0f3-dfb3ef4dfe5f"/>
 				<text><![CDATA[MENIMBANG]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="67" y="269" width="11" height="20" uuid="ddd17e96-98e9-48a2-880a-d2bdf0e83eec"/>
+				<reportElement x="78" y="269" width="11" height="20" uuid="ddd17e96-98e9-48a2-880a-d2bdf0e83eec"/>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<staticText>
@@ -102,11 +102,11 @@
 				<text><![CDATA[Bahwa dalam rangka penyegaran dan menjamin efektifitas kerja pengelola KSPPS BMT Mentari Muamalat Mandiri Kotagajah maka dipandang perlu dilakukan mutasi pengelola dengan surat keputusan.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="347" width="67" height="20" uuid="92c8881c-4166-468d-9da2-5c7a3bdc61ec"/>
+				<reportElement x="0" y="347" width="76" height="20" uuid="92c8881c-4166-468d-9da2-5c7a3bdc61ec"/>
 				<text><![CDATA[MENGINGAT]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="67" y="347" width="11" height="20" uuid="7b27307f-77db-467e-96fd-140ac1d0879f"/>
+				<reportElement x="78" y="347" width="11" height="20" uuid="7b27307f-77db-467e-96fd-140ac1d0879f"/>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<staticText>
@@ -148,6 +148,105 @@
 			<staticText>
 				<reportElement x="94" y="438" width="11" height="20" uuid="e7ae65a7-9359-4cfb-be11-8380b87d9abe"/>
 				<text><![CDATA[5.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="78" y="469" width="11" height="20" uuid="08715cfc-b5dd-4c5b-9e52-1ad4183cbc1d"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="469" width="76" height="20" uuid="387893ad-ed37-404f-af4d-9595444f3d1b"/>
+				<text><![CDATA[BERDASARKAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="520" width="76" height="20" uuid="2a50f477-4ef2-4e3e-a383-3e1815eb5401"/>
+				<text><![CDATA[MENETAPKAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="78" y="520" width="11" height="20" uuid="aebf71f7-ad52-4ca2-8f06-68ab9c560ceb"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="94" y="469" width="353" height="20" uuid="50ccd6ff-c19f-4979-9f92-1151024a89e0"/>
+				<text><![CDATA[Keputusan rapat Pengurus dan Pengawas pada tanggal : TANGGAL.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="233" y="489" width="102" height="20" uuid="35cdd589-8c8e-469b-b054-e43a2b62db48"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[M E M U T U S K A N]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="78" y="540" width="11" height="20" uuid="b4845877-9ac0-488d-addd-e38f59eb60b6"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="540" width="76" height="20" uuid="f97fa350-42f2-4186-bc28-53a37a3f63ac"/>
+				<text><![CDATA[Pertama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="94" y="540" width="113" height="20" uuid="dc2ec16d-aa41-441a-84e0-a781b7cd5701"/>
+				<text><![CDATA[Terhitung Mulai Tanggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="94" y="580" width="113" height="20" uuid="cb11ab4e-7946-4eea-bc6d-9a4964dacc61"/>
+				<text><![CDATA[1. Nama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="94" y="600" width="113" height="20" uuid="8e081018-ae75-4028-b164-6727423ec40a"/>
+				<text><![CDATA[2. NIK]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="94" y="620" width="113" height="20" uuid="80845a6b-70e7-4bcc-bd13-4b59c65f9de1"/>
+				<text><![CDATA[3. Tempat tanggal lahir]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="94" y="640" width="113" height="20" uuid="77f93072-d6bd-44a8-9fb7-9ab62e98c362"/>
+				<text><![CDATA[4. Tugas lama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="94" y="660" width="113" height="20" uuid="9c3cb737-3d1b-4e69-99cc-b9a9e5b71520"/>
+				<text><![CDATA[5. Tugas baru]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="207" y="540" width="11" height="20" uuid="6d5605c2-fd58-459e-ac93-8d5ee4dff415"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="207" y="580" width="11" height="20" uuid="230d56d9-ec3c-4667-94b2-4f9a2105c637"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="207" y="600" width="11" height="20" uuid="c6d54b11-40ba-48f2-a1a1-288f207ef1df"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="207" y="620" width="11" height="20" uuid="8ec54df2-a6e8-45a8-82f5-03b38adcf962"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="207" y="640" width="11" height="20" uuid="e5a12e91-eb0b-42a7-8499-282375741c27"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="207" y="660" width="11" height="20" uuid="a57e92ee-66c9-4f43-924f-382a3fd2d3cd"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="218" y="540" width="113" height="20" uuid="aa3870e2-963a-440b-8426-ec0073a32ffe"/>
+				<text><![CDATA[TANGGAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="94" y="560" width="244" height="20" uuid="6c314ba6-0fe9-478a-8b45-10d618a29cfc"/>
+				<text><![CDATA[memindahkan Pengelola yang tercantum dibawaha ini]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="218" y="580" width="91" height="20" uuid="31ddbdad-02d5-40ea-b744-523fca5ee8f6"/>
+				<text><![CDATA[NAMA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="218" y="600" width="91" height="20" uuid="de6cacad-0bcc-431c-9d79-eb93e4a3637a"/>
+				<text><![CDATA[NIK]]></text>
 			</staticText>
 		</band>
 	</title>
