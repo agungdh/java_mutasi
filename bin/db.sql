@@ -3,7 +3,7 @@
 -- Host: 127.0.0.1	Database: mutasi
 -- ------------------------------------------------------
 -- Server version 	5.5.5-10.3.16-MariaDB
--- Date: Fri, 23 Aug 2019 04:37:57 +0200
+-- Date: Sat, 24 Aug 2019 05:41:30 +0200
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -140,7 +140,7 @@ CREATE TABLE `karyawan` (
 LOCK TABLES `karyawan` WRITE;
 /*!40000 ALTER TABLE `karyawan` DISABLE KEYS */;
 SET autocommit=0;
-INSERT INTO `karyawan` VALUES (8,3,'Agung Sapto Margono Dh','15753003','Laki-Laki','Nunggalrejo, Punggur, Lampung Tengah','1997-03-25','Islam','D3','Programmer','Lajang'),(11,2,'Agung 2','15753003','Laki-Laki','Nunggalrejo, Punggur, Lampung Tengah','1997-03-25','Islam','D3','Programmer','Lajang');
+INSERT INTO `karyawan` VALUES (8,3,'Agung Sapto Margono Dh','15753002','Laki-Laki','Nunggalrejo, Punggur, Lampung Tengah','1997-03-25','Islam','D3','Programmer','Lajang'),(11,2,'Agung 2','15753003','Laki-Laki','Nunggalrejo, Punggur, Lampung Tengah','1997-03-25','Islam','D3','Programmer','Lajang');
 /*!40000 ALTER TABLE `karyawan` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
@@ -191,4 +191,4 @@ COMMIT;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on: Fri, 23 Aug 2019 04:37:57 +0200
+-- Dump completed on: Sat, 24 Aug 2019 05:41:30 +0200
