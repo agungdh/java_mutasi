@@ -21,6 +21,7 @@ import org.javalite.activejdbc.DB;
 import org.javalite.activejdbc.LazyList;
 import org.joda.time.DateTime;
 import org.joda.time.Months;
+import test.test.Helpers.ADHhelper;
 import test.test.Models.AdminModel;
 
 /**
@@ -48,6 +49,9 @@ public class Login extends javax.swing.JFrame {
         newImg = img.getScaledInstance(LogoKiri.getWidth(), LogoKiri.getHeight(), Image.SCALE_SMOOTH);
         image = new ImageIcon(newImg);
         LogoKanan.setIcon(image);
+        
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        TanggalKop.setText(formatter.format(new Date()));   
     }
 
   
@@ -74,7 +78,7 @@ public class Login extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        TanggalKop = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         LogoKiri = new javax.swing.JLabel();
         LogoKanan = new javax.swing.JLabel();
@@ -117,7 +121,7 @@ public class Login extends javax.swing.JFrame {
 
         jLabel8.setText("Kotak Pos. 34153, Telp/Fax. 0725 57877");
 
-        jLabel9.setText("Tanggal");
+        TanggalKop.setText("Tanggal");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -127,7 +131,7 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel9)
+                        .addComponent(TanggalKop)
                         .addGap(128, 128, 128))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(38, 38, 38)
@@ -189,7 +193,7 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(LogoKiri, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LogoKanan, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel9)
+                .addComponent(TanggalKop)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, Short.MAX_VALUE)
@@ -278,6 +282,7 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LogoKanan;
     private javax.swing.JLabel LogoKiri;
+    private javax.swing.JLabel TanggalKop;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -288,7 +293,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JPasswordField pw;
