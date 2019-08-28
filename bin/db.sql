@@ -3,7 +3,7 @@
 -- Host: 127.0.0.1	Database: mutasi
 -- ------------------------------------------------------
 -- Server version 	5.5.5-10.3.16-MariaDB
--- Date: Sat, 24 Aug 2019 05:41:30 +0200
+-- Date: Wed, 28 Aug 2019 09:22:52 +0200
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -63,7 +63,7 @@ CREATE TABLE `gaji` (
   PRIMARY KEY (`id`),
   KEY `id_karyawan` (`id_karyawan`),
   CONSTRAINT `gaji_ibfk_1` FOREIGN KEY (`id_karyawan`) REFERENCES `karyawan` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -90,8 +90,14 @@ COMMIT;
 CREATE TABLE `jabatan` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `jabatan` varchar(50) NOT NULL,
+  `gaji` int(11) NOT NULL,
+  `t_jabatan` int(11) NOT NULL,
+  `t_keluarga` int(11) NOT NULL,
+  `t_komunikasi` int(11) NOT NULL,
+  `u_kehadiran` int(11) NOT NULL,
+  `purna_tugas` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -101,12 +107,12 @@ CREATE TABLE `jabatan` (
 LOCK TABLES `jabatan` WRITE;
 /*!40000 ALTER TABLE `jabatan` DISABLE KEYS */;
 SET autocommit=0;
-INSERT INTO `jabatan` VALUES (2,'Direktur'),(3,'Manager');
+INSERT INTO `jabatan` VALUES (2,'Direktur',123,345,5467,2345,12342134,1251255),(3,'Manager',213412,1234561235,1235123,235125,123525,1235125125),(6,'Direktur Utama',10000000,20000000,30000000,40000000,50000000,60000000);
 /*!40000 ALTER TABLE `jabatan` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
 
--- Dumped table `jabatan` with 2 row(s)
+-- Dumped table `jabatan` with 3 row(s)
 --
 
 --
@@ -127,10 +133,11 @@ CREATE TABLE `karyawan` (
   `pendidikan` varchar(50) NOT NULL,
   `pekerjaan` varchar(50) NOT NULL,
   `status_kawin` varchar(20) NOT NULL,
+  `tmt` date NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_jabatan` (`id_jabatan`),
   CONSTRAINT `karyawan_ibfk_1` FOREIGN KEY (`id_jabatan`) REFERENCES `jabatan` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -140,7 +147,7 @@ CREATE TABLE `karyawan` (
 LOCK TABLES `karyawan` WRITE;
 /*!40000 ALTER TABLE `karyawan` DISABLE KEYS */;
 SET autocommit=0;
-INSERT INTO `karyawan` VALUES (8,3,'Agung Sapto Margono Dh','15753002','Laki-Laki','Nunggalrejo, Punggur, Lampung Tengah','1997-03-25','Islam','D3','Programmer','Lajang'),(11,2,'Agung 2','15753003','Laki-Laki','Nunggalrejo, Punggur, Lampung Tengah','1997-03-25','Islam','D3','Programmer','Lajang');
+INSERT INTO `karyawan` VALUES (8,3,'Agung Sapto Margono Dh','15753002','Laki-Laki','Nunggalrejo, Punggur, Lampung Tengah','1997-03-25','Islam','D3','Programmer','Lajang','2019-08-28'),(11,2,'Agung 2','15753003','Laki-Laki','Nunggalrejo, Punggur, Lampung Tengah','1997-03-25','Islam','D3','Programmer','Lajang','2019-08-28');
 /*!40000 ALTER TABLE `karyawan` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
@@ -191,4 +198,4 @@ COMMIT;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on: Sat, 24 Aug 2019 05:41:30 +0200
+-- Dump completed on: Wed, 28 Aug 2019 09:22:52 +0200

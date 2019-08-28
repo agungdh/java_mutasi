@@ -32,55 +32,6 @@
               <Component id="ScrollPane" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="0" pref="77" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="LabelCari7" min="-2" pref="65" max="-2" attributes="0"/>
-                  <Component id="LabelCari6" min="-2" pref="65" max="-2" attributes="0"/>
-                  <Component id="LabelCari5" min="-2" pref="65" max="-2" attributes="0"/>
-                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="LabelCari" min="-2" pref="95" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                          <Component id="TextCari" min="-2" pref="320" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="LabelCari1" min="-2" pref="65" max="-2" attributes="0"/>
-                          <EmptySpace min="59" max="32767" attributes="0"/>
-                          <Component id="Nama" min="-2" pref="319" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="LabelCari2" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
-                              <Component id="LabelCari4" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
-                              <Component id="LabelCari3" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
-                              <Component id="LabelCari8" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
-                              <Component id="LabelCari9" min="-2" pref="65" max="-2" attributes="0"/>
-                              <Component id="LabelCari10" min="-2" pref="65" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="laki" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                                  <Component id="perempuan" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="NIK" pref="319" max="32767" attributes="0"/>
-                                  <Component id="TanggalLahir" max="32767" attributes="0"/>
-                                  <Component id="Agama" alignment="1" pref="319" max="32767" attributes="0"/>
-                                  <Component id="Pendidikan" alignment="0" pref="319" max="32767" attributes="0"/>
-                                  <Component id="Pekerjaan" alignment="0" pref="319" max="32767" attributes="0"/>
-                                  <Component id="Kawin" alignment="0" pref="319" max="32767" attributes="0"/>
-                                  <Component id="Tempat" alignment="0" pref="319" max="32767" attributes="0"/>
-                                  <Component id="Jabatan" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
-                      </Group>
-                  </Group>
-              </Group>
-              <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
-          </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="185" max="-2" attributes="0"/>
               <Component id="ButtonTambahUbah" min="-2" max="-2" attributes="0"/>
@@ -89,6 +40,64 @@
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Component id="ButtonResetHapus" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="0" pref="77" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="LabelCari11" min="-2" pref="65" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="LabelCari7" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="LabelCari6" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="LabelCari5" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="LabelCari" min="-2" pref="95" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                                  <Component id="TextCari" min="-2" pref="320" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="LabelCari1" min="-2" pref="65" max="-2" attributes="0"/>
+                                  <EmptySpace min="59" max="32767" attributes="0"/>
+                                  <Component id="Nama" min="-2" pref="319" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="LabelCari2" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                                      <Component id="LabelCari4" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                                      <Component id="LabelCari3" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                                      <Component id="LabelCari8" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                                      <Component id="LabelCari9" min="-2" pref="65" max="-2" attributes="0"/>
+                                      <Component id="LabelCari10" min="-2" pref="65" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="laki" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                                          <Component id="perempuan" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="NIK" pref="319" max="32767" attributes="0"/>
+                                          <Component id="TanggalLahir" max="32767" attributes="0"/>
+                                          <Component id="Agama" alignment="1" pref="319" max="32767" attributes="0"/>
+                                          <Component id="Pendidikan" alignment="0" pref="319" max="32767" attributes="0"/>
+                                          <Component id="Pekerjaan" alignment="0" pref="319" max="32767" attributes="0"/>
+                                          <Component id="Kawin" alignment="0" pref="319" max="32767" attributes="0"/>
+                                          <Component id="Tempat" alignment="0" pref="319" max="32767" attributes="0"/>
+                                          <Component id="Jabatan" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="TMT" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
           </Group>
       </Group>
     </DimensionLayout>
@@ -148,7 +157,12 @@
                   <Component id="Jabatan" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="LabelCari10" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="14" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="LabelCari11" min="-2" max="-2" attributes="0"/>
+                  <Component id="TMT" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="33" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="ButtonRefresh" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="ButtonTambahUbah" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -346,6 +360,16 @@
     <Component class="javax.swing.JLabel" name="LabelCari10">
       <Properties>
         <Property name="text" type="java.lang.String" value="Jabatan"/>
+      </Properties>
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="TMT">
+      <Properties>
+        <Property name="dateFormatString" type="java.lang.String" value="dd-MM-yyyy"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LabelCari11">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="TMT"/>
       </Properties>
     </Component>
   </SubComponents>
