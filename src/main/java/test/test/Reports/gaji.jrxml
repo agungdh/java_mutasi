@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="gaji" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3e531f50-285a-424b-91e1-b9a952a9a76d">
-	<property name="ireport.zoom" value="1.1000000000000028"/>
+	<property name="ireport.zoom" value="1.1000000000000034"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="48"/>
+	<property name="ireport.y" value="144"/>
 	<parameter name="nik" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT g.*, k.nama, k.nik, j.jabatan, g.gaji + g.t_jabatan + g.t_keluarga + g.t_komunikasi + g.u_kehadiran + g.purna_tugas total
+		<![CDATA[SELECT g.*, k.nama, k.nik, j.jabatan, g.gaji + g.t_jabatan + g.t_keluarga + g.t_komunikasi + g.u_kehadiran + g.purna_tugas total,
+concat(lpad(day(date(now())), 2, 0), '-', lpad(month(date(now())), 2, 0), '-', year(date(now()))) tanggalnow
 FROM gaji g, karyawan k, jabatan j
 WHERE g.id_karyawan = k.id
 AND k.id_jabatan = j.id
@@ -47,6 +48,7 @@ AND k.nik = $P{nik}]]>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="total" class="java.lang.Long"/>
+	<field name="tanggalnow" class="java.lang.String"/>
 	<title>
 		<band height="802" splitType="Stretch">
 			<staticText>
@@ -177,7 +179,7 @@ AND k.nik = $P{nik}]]>
 				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="140" width="555" height="1" uuid="877b458e-c175-48b0-9d5f-9375739f72c0"/>
+				<reportElement x="2" y="151" width="555" height="1" uuid="877b458e-c175-48b0-9d5f-9375739f72c0"/>
 			</line>
 			<staticText>
 				<reportElement x="43" y="681" width="113" height="20" uuid="2cf45819-e13a-4835-98be-204786718171"/>
@@ -201,7 +203,7 @@ AND k.nik = $P{nik}]]>
 			</image>
 			<image>
 				<reportElement x="452" y="30" width="193" height="80" uuid="40c01d19-17ae-4a7f-829d-2ceb1fac2d1f"/>
-				<imageExpression><![CDATA["LOGO LAMA KOPERASI INDONESIA.png"]]></imageExpression>
+				<imageExpression><![CDATA["WhatsApp Image 2019-08-28 at 3.06.08 PM.jpeg"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="193" y="30" width="190" height="20" uuid="ce566fc6-f8d5-49fa-8368-00a5c198e093"/>
@@ -233,6 +235,10 @@ AND k.nik = $P{nik}]]>
 				<reportElement x="193" y="110" width="188" height="20" uuid="15c051f8-c849-4fa6-8b07-4d1581d64bfa"/>
 				<text><![CDATA[Kotak Pos. 34153, Telp/Fax. 0725 57877]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="250" y="132" width="100" height="20" uuid="f3191030-1148-4c13-952a-c71e6dad8f3b"/>
+				<textFieldExpression><![CDATA[$F{tanggalnow}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 </jasperReport>
