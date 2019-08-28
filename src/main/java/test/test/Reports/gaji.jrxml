@@ -197,11 +197,11 @@ AND k.nik = $P{nik}]]>
 			</staticText>
 			<image>
 				<reportElement x="11" y="30" width="193" height="80" uuid="1e8265bc-b907-4052-89ff-3b5f1ac55dfb"/>
-				<imageExpression><![CDATA["C:\\Users\\user\\Documents\\java\\mutasi\\src\\main\\java\\test\\test\\Reports\\LOGO LAMA KOPERASI INDONESIA.png"]]></imageExpression>
+				<imageExpression><![CDATA["LOGO LAMA KOPERASI INDONESIA.png"]]></imageExpression>
 			</image>
 			<image>
 				<reportElement x="452" y="30" width="193" height="80" uuid="40c01d19-17ae-4a7f-829d-2ceb1fac2d1f"/>
-				<imageExpression><![CDATA["C:\\Users\\user\\Documents\\java\\mutasi\\src\\main\\java\\test\\test\\Reports\\LOGO LAMA KOPERASI INDONESIA.png"]]></imageExpression>
+				<imageExpression><![CDATA["LOGO LAMA KOPERASI INDONESIA.png"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="193" y="30" width="190" height="20" uuid="ce566fc6-f8d5-49fa-8368-00a5c198e093"/>
