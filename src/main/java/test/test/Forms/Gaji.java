@@ -274,7 +274,7 @@ public class Gaji extends javax.swing.JFrame {
         Karyawan = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Tempat Tugas");
+        setTitle("Gaji");
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {

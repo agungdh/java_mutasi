@@ -29,33 +29,64 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="ButtonTambahUbah" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="ButtonRefresh" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                      <Component id="ButtonResetHapus" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="LabelCari" min="-2" pref="95" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="TextCari" min="-2" pref="205" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="185" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="ButtonTambahUbah" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="ButtonRefresh" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                              <Component id="ButtonResetHapus" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="ScrollPane" alignment="0" min="-2" pref="304" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="LabelCari1" min="-2" pref="65" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="Jabatan" min="-2" pref="205" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="LabelCari1" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="LabelCari3" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="LabelCari4" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="LabelCari5" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="LabelCari6" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="LabelCari7" alignment="1" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Component id="LabelCari2" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="Gaji" max="32767" attributes="0"/>
+                                          <Component id="Jabatan" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="Keluarga" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="Komunikasi" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="Kehadiran" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="Purna" alignment="0" min="-2" pref="264" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                      <Component id="Nama" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="ScrollPane" pref="754" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="LabelCari" min="-2" pref="95" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                              <Component id="TextCari" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
               </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -65,22 +96,52 @@
               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="LabelCari1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Nama" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="LabelCari2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Gaji" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="LabelCari3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="Jabatan" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="LabelCari4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Keluarga" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="LabelCari5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Komunikasi" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="LabelCari6" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Kehadiran" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="LabelCari7" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Purna" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="ButtonTambahUbah" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="ButtonRefresh" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="ButtonResetHapus" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="TextCari" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="LabelCari" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="ScrollPane" min="-2" pref="206" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <Component id="ScrollPane" pref="372" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -142,15 +203,57 @@
         <Property name="text" type="java.lang.String" value="Cari (Jabatan)"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="Jabatan">
+    <Component class="javax.swing.JTextField" name="Nama">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JabatanActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NamaActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="LabelCari1">
       <Properties>
         <Property name="text" type="java.lang.String" value="Jabatan"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JSpinner" name="Keluarga">
+    </Component>
+    <Component class="javax.swing.JSpinner" name="Komunikasi">
+    </Component>
+    <Component class="javax.swing.JSpinner" name="Kehadiran">
+    </Component>
+    <Component class="javax.swing.JLabel" name="LabelCari2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Gaji"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JSpinner" name="Purna">
+    </Component>
+    <Component class="javax.swing.JLabel" name="LabelCari3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Tunjangan Jabatan"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LabelCari4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Tunjangan Keluarga"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LabelCari5">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Tunjangan Komunikasi"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LabelCari6">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Uang Kehadiran"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LabelCari7">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Purna Tugas"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JSpinner" name="Gaji">
+    </Component>
+    <Component class="javax.swing.JSpinner" name="Jabatan">
     </Component>
   </SubComponents>
 </Form>
