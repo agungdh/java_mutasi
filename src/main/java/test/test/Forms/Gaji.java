@@ -8,6 +8,8 @@ package test.test.Forms;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.sql.Connection;
@@ -78,6 +80,21 @@ public class Gaji extends javax.swing.JFrame {
         
         loadComboBox();
         
+        Karyawan.addActionListener (new ActionListener () {
+            public void actionPerformed(ActionEvent e) {
+                Base.open();
+                KaryawanModel karyawan = KaryawanModel.findById(selectedComboKaryawanIndex);
+                JabatanModel jabatan = karyawan.parent(JabatanModel.class);
+                Base.close();
+                Gaji.setValue(jabatan.getInteger("gaji"));
+                Jabatan.setValue(jabatan.getInteger("t_jabatan"));
+                Keluarga.setValue(jabatan.getInteger("t_keluarga"));
+                Komunikasi.setValue(jabatan.getInteger("t_komunikasi"));
+                Kehadiran.setValue(jabatan.getInteger("u_kehadiran"));
+                Purna.setValue(jabatan.getInteger("purna_tugas"));
+            }
+        });
+            
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
     }
     
@@ -384,9 +401,9 @@ public class Gaji extends javax.swing.JFrame {
                             .addComponent(TextCari, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(LabelCari1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(LabelCari2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(LabelCari2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(LabelCari1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGap(18, 18, 18)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(Gaji, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
                                 .addComponent(Karyawan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
