@@ -105,7 +105,7 @@ public class Gaji extends javax.swing.JFrame {
         
         for(KaryawanModel karyawan : karyawans) {
             comboKaryawanID.add(Integer.parseInt(karyawan.getString("id")));
-            Karyawan.addItem(karyawan.getString("nama") + " " + karyawan.getString("nik"));
+            Karyawan.addItem(karyawan.getString("nama"));
         }
 
         Base.close();

@@ -97,7 +97,7 @@ public class Mutasi extends javax.swing.JFrame {
         
         for(KaryawanModel karyawan : karyawans) {
             comboKaryawanID.add(Integer.parseInt(karyawan.getString("id")));
-            Karyawan.addItem(karyawan.getString("nik") + " " + karyawan.getString("nama"));
+            Karyawan.addItem(karyawan.getString("nik"));
         }
 
         Base.close();
